@@ -160,26 +160,30 @@ void TSP::branchAndBound()
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
-    branchAndBound(0, 1, caminhoParcial, visitados, menorCaminho, melhorCaminho);
+    branchAndBound(0, 1, caminhoParcial, visitados, menorCaminho);
+    showResult();
 }
 
 void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
-                         bool *visitados, int menorCaminho, int *melhorCaminho)
+                         bool *visitados, int menorCaminho)
 {
     int vertices = this->graph.getV();
     double **matriz = this->graph.getGraph();
+    int nivelAnterior = caminhoParcial[nivel - 1];
 
     if (nivel == vertices)
     {
         if (this->graph.getGraph())
         {
-            if (matriz[caminhoParcial[nivel - 1]][caminhoParcial[0]] != 0)
+            if (matriz[nivelAnterior][caminhoParcial[0]] != 0)
             {
-                int resultadoAtual = parcial + matriz[caminhoParcial[nivel - 1]][caminhoParcial[0]];
+                int resultadoAtual = parcial + matriz[nivelAnterior][caminhoParcial[0]];
 
+                // Se o caminho parcial já é maior que o menor
+                // caminho atual, então podemos atualizar o melhor caminho.
                 if (resultadoAtual < menorCaminho)
                 {
-                    atualizarMelhorCaminho(melhorCaminho, caminhoParcial);
+                    atualizarMelhorCaminho(caminhoParcial);
                     menorCaminho = resultadoAtual;
                 }
             }
@@ -189,9 +193,7 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
     {
         // Percorrer cidades
         for (int x = 0; x < vertices; x++)
-        {
-            int nivelAnterior = caminhoParcial[nivel - 1];
-
+        {            
             // Se a cidade não foi visitada e tem caminho entre os vertices
             if (!visitados[x] && matriz[nivelAnterior][x] != 0)
             {
@@ -203,7 +205,7 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
                 {
                     caminhoParcial[nivel] = x;
                     visitados[x] = true;
-                    branchAndBound(parcial, nivel + 1, caminhoParcial, visitados, menorCaminho, melhorCaminho);
+                    branchAndBound(parcial, nivel + 1, caminhoParcial, visitados, menorCaminho);
                 }
 
                 parcial -= matriz[nivelAnterior][x];
@@ -216,13 +218,13 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
     }
 }
 
-void TSP::atualizarMelhorCaminho(int* melhorCaminho, int* caminhoParcial)
+void TSP::atualizarMelhorCaminho( int* caminhoParcial)
 {
     int vertices = this->graph.getV();
     for (int x = 0; x < vertices+1; x++)
-        melhorCaminho[x] = caminhoParcial[x];    
+        this->cities[x] = caminhoParcial[x];    
     
-    melhorCaminho[vertices] = caminhoParcial[0];    
+    this->cities[vertices] = caminhoParcial[0];    
 }
 
 //void TSP::

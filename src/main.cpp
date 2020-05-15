@@ -16,29 +16,29 @@ void printClock(clock_t start, clock_t end, string msg);
 
 void debug()
 {
-    /*  Graph graph(5);
+    Graph graph(5);
 
-    graph.createLigation(0, 1, 3);
-    graph.createLigation(0, 2, 6);
-    graph.createLigation(2, 3, 5);
-    graph.createLigation(3, 1, 4);
-    graph.createLigation(0, 3, 5);
-    graph.createLigation(1, 2, 7);
-    graph.createLigation(2, 4, 3);
-    graph.createLigation(4, 3, 5); */
+    graph.createLigation(0, 1, 10);
+    graph.createLigation(0, 2, 15);
+    graph.createLigation(0, 3, 20);
+    graph.createLigation(1, 2, 35);
+    graph.createLigation(1, 3, 25);
+    graph.createLigation(2, 3, 30);
 
+    /*
     Graph graph(10);
 
     graph.newRandomGraph();
+    */
 
     graph.print();
-    TSP bruteForce(graph);
+    TSP tsp(graph);
 
     clock_t start, end;
 
     //cout << "STARTING BRUTE FORCE" << endl;
     start = clock();
-    bruteForce.bruteForce();
+    tsp.bruteForce();
     end = clock();
     printClock(start, end, "Time elapsed of Brute Force");
 }
@@ -67,8 +67,9 @@ void runAlgorithm(
 
 int main()
 {
+    debug();
+    /*
     srand(time(NULL));
-    //debug();
     int vertexs, edges;
     int x, y, weight;
 
@@ -103,4 +104,5 @@ int main()
         runAlgorithm(tsp, &TSP::bruteForce, "Brute Force", timeTaken);
         runAlgorithm(tsp, &TSP::geneticAlgorithm, "Genetic Algorithm", timeTaken);
     }
+    */
 }

@@ -21,8 +21,8 @@ private:
     int *initializePath(int *paths, int V);
 
     /* Funções auxiliares do paradigma de Força Bruta */
-    void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho, int* melhorCaminho);
-    void atualizarMelhorCaminho(int* melhorCaminho, int* caminhoParcial);
+    void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho);
+    void atualizarMelhorCaminho(int* caminhoParcial);
 
 public:
     TSP(Graph graph);
