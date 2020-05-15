@@ -25,7 +25,7 @@ protected:
     string name;
     /** Tempo gasto na última execução */
     double time;
-    /** Média das execuções */
+    /** Tempo gasto acumulado */
     double totalTime = 0;
 
     virtual void run() = 0;
