@@ -1,3 +1,11 @@
+#pragma once
+
+#include <string>
+
+#include "graph.h"
+
+using namespace std;
+
 /**
  * Travelling Salesman Problem implementations:
  * - Brute force
@@ -7,28 +15,28 @@
  */
 class TSP
 {
-private:
+protected:
     Graph graph;
 
     double distance;
     int *cities;
 
-    /* Funções auxiliares do paradigma de Força Bruta */
-    void permutation(int array[], int size, int n);
-    void walkThePath(int *array);
+    /** Nome do algoritmo */
+    string name;
+    /** Tempo gasto na última execução */
+    double time;
+    /** Média das execuções */
+    double totalTime = 0;
+
+    virtual void run() = 0;
+
+    double sumPath(int *array, int arraySize);
     double sumPath(int *array);
     void showResult();
-    int *initializePath(int *paths, int V);
-
-    /* Funções auxiliares do paradigma de Força Bruta */
-    void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho);
-    void atualizarMelhorCaminho(int* caminhoParcial);
 
 public:
-    TSP(Graph graph);
+    TSP(Graph graph, string name);
 
-    /* Funções dos algoritmos dos paradigmas */
-    void bruteForce();
-    void branchAndBound();
-    void geneticAlgorithm();
+    void printClock();
+    double runAndCountTime();
 };

@@ -1,3 +1,6 @@
 pushd src
-g++ main.cpp TSP.cpp graph.cpp -o main.exe -std=c++11
+g++ -o main.exe `
+    -std=c++11 `
+    -I algorithms algorithms/*.cpp `
+    main.cpp TSP.cpp graph.cpp
 popd
