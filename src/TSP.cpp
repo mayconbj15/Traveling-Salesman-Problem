@@ -133,3 +133,12 @@ void TSP::walkThePath(int *array)
             this->cities[i] = array[i];
     }
 }
+
+/**
+ * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
+ */
+void TSP::geneticAlgorithm()
+{
+    int numVertices = this->graph.getV();
+    // int verticesIndexes = createChromosome(numVertices);
+}
