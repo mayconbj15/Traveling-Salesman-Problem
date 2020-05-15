@@ -145,6 +145,107 @@ void TSP::walkThePath(int *array)
     }
 }
 
+void TSP::branchAndBound()
+{
+    int vertices = this->graph.getV();
+    int *caminhoParcial = new int[vertices + 1];
+    bool *visitados = new bool[vertices];
+    int menorCaminho = MAX;
+
+    memset(caminhoParcial, -1, vertices + 1);
+    memset(visitados, false, vertices);
+
+    visitados[0] = true;
+    caminhoParcial[0] = 0;
+
+    branchAndBound(0, 1, caminhoParcial, visitados, menorCaminho);
+}
+
+void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial, bool *visitados, int menorCaminho)
+{
+    int vertices = this->graph.getV();
+    double **matriz = this->graph.getGraph();
+
+    if (nivel == vertices)
+    {
+        if (this->graph.getGraph())
+        {
+            if (matriz[caminhoParcial[nivel-1]][caminhoParcial[0]] != 0)
+            {
+                
+                int resultadoAtual = parcial + matriz[caminhoParcial[nivel - 1]][caminhoParcial[0]];
+
+                if (resultadoAtual < menorCaminho)
+                {
+                    atualizarMelhorCaminho(caminhoParcial);
+                    menorCaminho = resultadoAtual;
+                }
+            }
+        }
+    }
+    else
+    {
+        // Percorrer cidades
+        for (int x = 0; x < vertices; x++)
+        {
+            int nivelAnterior = caminhoParcial[nivel - 1];
+
+            // Se a cidade não foi visitada e tem caminho entre os vertices
+            if (!visitados[x] && matriz[nivelAnterior][x] != 0)
+            {
+                parcial += matriz[nivelAnterior][x];
+
+                // Se o caminho parcial já é maior que o menor
+                // caminho atual, então podemos descartar esta computação.
+                if (parcial < menorCaminho)
+                {
+                    caminhoParcial[nivel] = x;
+                    visitados[x] = true;
+                    branchAndBound(parcial, nivel + 1, caminhoParcial, visitados, menorCaminho);
+                }
+
+                parcial -= matriz[nivelAnterior][x];
+
+                memset(visitados, false, vertices);
+                for (int y = 0; y < nivel; y++)
+                    visitados[caminhoParcial[y]] = true;
+            }
+        }
+    }
+}
+
+//void TSP::
+
+// -------------- GENETIC ALGORITHM FUNCTIONS
+
+typedef struct {
+    int *cities;
+    int pathCost;
+} Individual;
+
+/**
+ * @return Array with the sequence of cities. Ex.: { 0, 7, 5, 3, 0 }.
+ */
+int *createRandomPath(int numVertices)
+{
+    int city;
+    int *cities = new int[numVertices + 1]();
+    int *citiesEnd = cities + numVertices + 1 - 1;
+    cities[0] = cities[numVertices] = 0;
+
+    for (size_t i = 1; i < numVertices; i++)
+    {
+        do {
+            city = rand() % (numVertices - 1) + 1;
+        } while (find(cities + 1, citiesEnd, city) != citiesEnd);
+
+        cities[i] = city;
+    }
+
+    return cities;
+}
+
+
 /**
  * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
  */
