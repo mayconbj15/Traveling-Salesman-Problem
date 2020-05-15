@@ -86,8 +86,6 @@ void Graph::newRandomGraph()
 {
     double number;
 
-    srand(time(NULL));
-
     for (int i = 0; i < V; i++)
     {
         for (int j = 0; j < V; j++)

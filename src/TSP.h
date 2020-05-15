@@ -16,6 +16,7 @@ private:
     /* Funções auxiliares do paradigma de Força Bruta */
     void permutation(int array[], int size, int n);
     void walkThePath(int *array);
+    double sumPath(int *array);
     void showResult();
     int *initializePath(int *paths, int V);
 
