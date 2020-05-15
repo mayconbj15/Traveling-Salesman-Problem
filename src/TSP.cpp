@@ -179,7 +179,7 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
 
                 if (resultadoAtual < menorCaminho)
                 {
-                    atualizarMelhorCaminho(caminhoParcial);
+                    atualizarMelhorCaminho(melhorCaminho, caminhoParcial);
                     menorCaminho = resultadoAtual;
                 }
             }
@@ -214,6 +214,15 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
             }
         }
     }
+}
+
+void TSP::atualizarMelhorCaminho(int* melhorCaminho, int* caminhoParcial)
+{
+    int vertices = this->graph.getV();
+    for (int x = 0; x < vertices+1; x++)
+        melhorCaminho[x] = caminhoParcial[x];    
+    
+    melhorCaminho[vertices] = caminhoParcial[0];    
 }
 
 //void TSP::

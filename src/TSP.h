@@ -22,7 +22,7 @@ private:
 
     /* Funções auxiliares do paradigma de Força Bruta */
     void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho, int* melhorCaminho);
-    void atualizarMelhorCaminho(int* caminhoParcial);
+    void atualizarMelhorCaminho(int* melhorCaminho, int* caminhoParcial);
 
 public:
     TSP(Graph graph);
