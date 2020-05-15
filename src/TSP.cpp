@@ -245,7 +245,6 @@ int *createRandomPath(int numVertices)
     return cities;
 }
 
-
 /**
  * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
  */
