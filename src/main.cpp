@@ -3,16 +3,27 @@
 #include <bits/stdc++.h>
 
 #include "graph.h"
-#include "TSP.h"
+#include "constants.h"
+#include "algorithms/branchAndBound.h"
+#include "algorithms/bruteForce.h"
+#include "algorithms/dynamicProgramming.h"
+#include "algorithms/geneticAlgorithm.h"
 
 using namespace std;
 
-#define UNDEFINED -1
-#define ENDOFROUTE -1
-#define EXECUTIONS 10
-#define NUMBEROFGRAPHS 15
+template<typename Algorithm>
+double runAlgorithm(Graph& graph)
+{
+    return Algorithm(graph).runAndCountTime();
+}
 
-void printClock(clock_t start, clock_t end, string msg);
+template<typename Algorithm>
+double runAlgorithm(Graph& graph, double& timeTaken)
+{
+    double time = runAlgorithm<Algorithm>(graph);
+    timeTaken += time;
+    return time;
+}
 
 void debug()
 {
@@ -32,43 +43,13 @@ void debug()
     */
 
     graph.print();
-    TSP tsp(graph);
-
-    clock_t start, end;
-
-    //cout << "STARTING BRUTE FORCE" << endl;
-    start = clock();
-    tsp.bruteForce();
-    end = clock();
-    printClock(start, end, "Time elapsed of Brute Force");
-}
-
-void printClock(clock_t start, clock_t end, string msg)
-{
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-    cout << msg << ": " << fixed
-         << time_taken << setprecision(5);
-    cout << " sec " << endl;
-}
-
-template <typename AlgorithmFunc>
-void runAlgorithm(
-    TSP& tsp, AlgorithmFunc algorithmFunc, string algorithmName, double& timeTaken)
-{
-    clock_t start, end;
-    start = clock();
-    (tsp.*algorithmFunc)();
-    end = clock();
-
-    timeTaken += double(end - start);
-
-    printClock(start, end, "Time elapsed of " + algorithmName);
+    runAlgorithm<BruteForce>(graph);
 }
 
 int main()
 {
-    debug();
-    /*
+    // debug();
+    
     srand(time(NULL));
     int vertexs, edges;
     int x, y, weight;
@@ -100,9 +81,9 @@ int main()
 
         //graph.print();
 
-        TSP tsp(graph);
-        runAlgorithm(tsp, &TSP::bruteForce, "Brute Force", timeTaken);
-        runAlgorithm(tsp, &TSP::geneticAlgorithm, "Genetic Algorithm", timeTaken);
+        runAlgorithm<BruteForce>(graph, timeTaken);
+        cout << "----------------" << endl;
+        runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
+        cout << "----------------" << endl;
     }
-    */
 }
