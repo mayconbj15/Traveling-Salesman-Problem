@@ -20,7 +20,7 @@ private:
     int *initializePath(int *paths, int V);
 
     /* Funções auxiliares do paradigma de Força Bruta */
-    void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho);
+    void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho, int* melhorCaminho);
     void atualizarMelhorCaminho(int* caminhoParcial);
 
 public:

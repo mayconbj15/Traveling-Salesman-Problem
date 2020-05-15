@@ -138,19 +138,22 @@ void TSP::branchAndBound()
 {
     int vertices = this->graph.getV();
     int *caminhoParcial = new int[vertices + 1];
+    int *melhorCaminho = new int[vertices + 1];
     bool *visitados = new bool[vertices];
     int menorCaminho = MAX;
 
     memset(caminhoParcial, -1, vertices + 1);
+    memset(melhorCaminho, -1, vertices + 1);
     memset(visitados, false, vertices);
 
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
-    branchAndBound(0, 1, caminhoParcial, visitados, menorCaminho);
+    branchAndBound(0, 1, caminhoParcial, visitados, menorCaminho, melhorCaminho);
 }
 
-void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial, bool *visitados, int menorCaminho)
+void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial,
+                         bool *visitados, int menorCaminho, int *melhorCaminho)
 {
     int vertices = this->graph.getV();
     double **matriz = this->graph.getGraph();
@@ -159,9 +162,8 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial, bool *visi
     {
         if (this->graph.getGraph())
         {
-            if (matriz[caminhoParcial[nivel-1]][caminhoParcial[0]] != 0)
+            if (matriz[caminhoParcial[nivel - 1]][caminhoParcial[0]] != 0)
             {
-                
                 int resultadoAtual = parcial + matriz[caminhoParcial[nivel - 1]][caminhoParcial[0]];
 
                 if (resultadoAtual < menorCaminho)
@@ -190,7 +192,7 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial, bool *visi
                 {
                     caminhoParcial[nivel] = x;
                     visitados[x] = true;
-                    branchAndBound(parcial, nivel + 1, caminhoParcial, visitados, menorCaminho);
+                    branchAndBound(parcial, nivel + 1, caminhoParcial, visitados, menorCaminho, melhorCaminho);
                 }
 
                 parcial -= matriz[nivelAnterior][x];
@@ -203,7 +205,6 @@ void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial, bool *visi
     }
 }
 
-//void TSP::
 /**
  * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
  */
