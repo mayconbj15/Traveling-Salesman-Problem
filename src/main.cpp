@@ -51,6 +51,20 @@ void printClock(clock_t start, clock_t end, string msg)
     cout << " sec " << endl;
 }
 
+template <typename AlgorithmFunc>
+void runAlgorithm(
+    TSP& tsp, AlgorithmFunc algorithmFunc, string algorithmName, double& timeTaken)
+{
+    clock_t start, end;
+    start = clock();
+    (tsp.*algorithmFunc)();
+    end = clock();
+
+    timeTaken += double(end - start);
+
+    printClock(start, end, "Time elapsed of " + algorithmName);
+}
+
 int main()
 {
     //debug();
@@ -85,14 +99,7 @@ int main()
         //graph.print();
 
         TSP tsp(graph);
-
-        clock_t start, end;
-        start = clock();
-        tsp.bruteForce();
-        end = clock();
-
-        timeTaken += double(end - start);
-
-        printClock(start, end, "Time elapsed of Brute Force");
+        runAlgorithm(tsp, &TSP::bruteForce, "Brute Force", timeTaken);
+        runAlgorithm(tsp, &TSP::geneticAlgorithm, "Genetic Algorithm", timeTaken);
     }
 }

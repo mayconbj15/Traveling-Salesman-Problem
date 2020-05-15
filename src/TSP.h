@@ -24,4 +24,5 @@ public:
 
     /* Funções dos algoritmos dos paradigmas */
     void bruteForce();
+    void geneticAlgorithm();
 };
