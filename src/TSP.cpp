@@ -134,34 +134,42 @@ void TSP::walkThePath(int *array)
     }
 }
 
-<<<<<<< HEAD
-
 void TSP::branchAndBound()
 {
     int vertices = this->graph.getV();
-    int* caminhoParcial = new int[vertices + 1];
-    bool* visitados = new bool[vertices];
+    int *caminhoParcial = new int[vertices + 1];
+    bool *visitados = new bool[vertices];
     int menorCaminho = MAX;
 
-    memset(caminhoParcial, -1, vertices+1);
+    memset(caminhoParcial, -1, vertices + 1);
     memset(visitados, false, vertices);
 
-    visitados[0] = true; 
+    visitados[0] = true;
     caminhoParcial[0] = 0;
 
     branchAndBound(0, 1, caminhoParcial, visitados, menorCaminho);
 }
 
-void TSP::branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho)
+void TSP::branchAndBound(int parcial, int nivel, int *caminhoParcial, bool *visitados, int menorCaminho)
 {
     int vertices = this->graph.getV();
-    double** matriz = this->graph.getGraph();
+    double **matriz = this->graph.getGraph();
 
-    if(nivel == vertices)
+    if (nivel == vertices)
     {
-        if(this->graph.getGraph())
+        if (this->graph.getGraph())
         {
+            if (matriz[caminhoParcial[nivel-1]][caminhoParcial[0]] != 0)
+            {
+                
+                int resultadoAtual = parcial + matriz[caminhoParcial[nivel - 1]][caminhoParcial[0]];
 
+                if (resultadoAtual < menorCaminho)
+                {
+                    atualizarMelhorCaminho(caminhoParcial);
+                    menorCaminho = resultadoAtual;
+                }
+            }
         }
     }
     else
@@ -169,20 +177,20 @@ void TSP::branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visi
         // Percorrer cidades
         for (int x = 0; x < vertices; x++)
         {
-            int nivelAnterior = caminhoParcial[nivel-1];
+            int nivelAnterior = caminhoParcial[nivel - 1];
 
             // Se a cidade não foi visitada e tem caminho entre os vertices
-            if(!visitados[x] && matriz[nivelAnterior][x] != 0)
+            if (!visitados[x] && matriz[nivelAnterior][x] != 0)
             {
                 parcial += matriz[nivelAnterior][x];
 
                 // Se o caminho parcial já é maior que o menor
                 // caminho atual, então podemos descartar esta computação.
-                if(parcial < menorCaminho)
+                if (parcial < menorCaminho)
                 {
                     caminhoParcial[nivel] = x;
                     visitados[x] = true;
-                    branchAndBound(parcial, nivel+1, caminhoParcial, visitados, menorCaminho);
+                    branchAndBound(parcial, nivel + 1, caminhoParcial, visitados, menorCaminho);
                 }
 
                 parcial -= matriz[nivelAnterior][x];
@@ -190,16 +198,12 @@ void TSP::branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visi
                 memset(visitados, false, vertices);
                 for (int y = 0; y < nivel; y++)
                     visitados[caminhoParcial[y]] = true;
-                
             }
         }
-        
     }
 }
 
-
 //void TSP::
-=======
 /**
  * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
  */
@@ -208,4 +212,3 @@ void TSP::geneticAlgorithm()
     int numVertices = this->graph.getV();
     // int verticesIndexes = createChromosome(numVertices);
 }
->>>>>>> b8bff29577923de93f1dc15bcf5dd5afffbe0a9e

@@ -21,15 +21,13 @@ private:
 
     /* Funções auxiliares do paradigma de Força Bruta */
     void branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visitados, int menorCaminho);
+    void atualizarMelhorCaminho(int* caminhoParcial);
 
 public:
     TSP(Graph graph);
 
     /* Funções dos algoritmos dos paradigmas */
     void bruteForce();
-<<<<<<< HEAD
     void branchAndBound();
-=======
     void geneticAlgorithm();
->>>>>>> b8bff29577923de93f1dc15bcf5dd5afffbe0a9e
 };
