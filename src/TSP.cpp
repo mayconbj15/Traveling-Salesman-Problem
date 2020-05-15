@@ -134,6 +134,7 @@ void TSP::walkThePath(int *array)
     }
 }
 
+<<<<<<< HEAD
 
 void TSP::branchAndBound()
 {
@@ -198,3 +199,13 @@ void TSP::branchAndBound(int parcial, int nivel, int* caminhoParcial, bool* visi
 
 
 //void TSP::
+=======
+/**
+ * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
+ */
+void TSP::geneticAlgorithm()
+{
+    int numVertices = this->graph.getV();
+    // int verticesIndexes = createChromosome(numVertices);
+}
+>>>>>>> b8bff29577923de93f1dc15bcf5dd5afffbe0a9e
