@@ -67,6 +67,7 @@ void runAlgorithm(
 
 int main()
 {
+    srand(time(NULL));
     //debug();
     int vertexs, edges;
     int x, y, weight;
