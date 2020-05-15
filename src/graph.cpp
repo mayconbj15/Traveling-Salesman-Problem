@@ -18,6 +18,9 @@ Graph::Graph(int V)
     initializeGraph();
 }
 
+/**
+ * Inicializa um grafo com valores default
+ */
 void Graph::initializeGraph()
 {
     this->graph = new double *[V];
@@ -32,12 +35,24 @@ void Graph::initializeGraph()
     }
 }
 
+/**
+ * Função que cria uma aresta bidirecional entre dois vertices com um determinado peso
+ * 
+ * @param x vertice inicial
+ * @param y vertice final
+ * @param weight peso da aresta
+ */
 void Graph::createLigation(int x, int y, double weight)
 {
     this->graph[x][y] = weight;
     this->graph[y][x] = weight;
 }
 
+/**
+ * Função que retorna a quantidade de vertíces do grafo
+ * 
+ * @return quantidade de vertíces do grafo
+ */
 int Graph::getV()
 {
     return this->V;
@@ -48,6 +63,9 @@ double **Graph::getGraph()
     return this->graph;
 }
 
+/**
+ * Função para printar o grafo
+ */
 void Graph::print()
 {
     for (int i = 0; i < this->V; i++)
@@ -61,6 +79,9 @@ void Graph::print()
     cout << endl;
 }
 
+/**
+ * Função para gerar um novo grafo com número aleatórios
+ */
 void Graph::newRandomGraph()
 {
     double number;
@@ -71,7 +92,8 @@ void Graph::newRandomGraph()
     {
         for (int j = 0; j < V; j++)
         {
-            createLigation(i, j, (double)(rand() % 10 + 1));
+            if (i != j && j > i)
+                createLigation(i, j, (double)(rand() % 10 + 1));
         }
     }
 }

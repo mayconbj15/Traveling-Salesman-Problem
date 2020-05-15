@@ -1,0 +1,226 @@
+V: 3
+Shortest distance: 6
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.000000 sec 
+V: 3
+Shortest distance: 19.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 21.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 24.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 9.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 23.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 20.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 13.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 17.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 14.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 12.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 9.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 18.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 19.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 3
+Shortest distance: 9.00000
+Shortest path:
+0 1 2 
+Time elapsed of Brute Force: 0.00000 sec 
+MEDIA: 0.00000V: 6
+Shortest distance: 30.00000
+Shortest path:
+0 2 3 4 5 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 25.00000
+Shortest path:
+0 4 2 3 5 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 22.00000
+Shortest path:
+0 4 2 3 5 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 19.00000
+Shortest path:
+0 4 5 3 2 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 18.00000
+Shortest path:
+0 4 2 3 1 5 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 27.00000
+Shortest path:
+0 4 1 2 3 5 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 25.00000
+Shortest path:
+0 4 1 3 2 5 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 20.00000
+Shortest path:
+0 2 1 3 4 5 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 16.00000
+Shortest path:
+0 3 5 2 4 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 19.00000
+Shortest path:
+0 4 2 5 3 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 21.00000
+Shortest path:
+0 4 3 2 1 5 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 26.00000
+Shortest path:
+0 4 3 5 2 1 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 30.00000
+Shortest path:
+0 4 1 2 5 3 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 19.00000
+Shortest path:
+0 3 1 2 4 5 
+Time elapsed of Brute Force: 0.00000 sec 
+V: 6
+Shortest distance: 26.00000
+Shortest path:
+0 3 1 5 4 2 
+Time elapsed of Brute Force: 0.00000 sec 
+MEDIA: 0.00000V: 9
+Shortest distance: 24.00000
+Shortest path:
+0 4 5 1 2 7 3 8 6 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 25.00000
+Shortest path:
+0 2 3 1 7 4 8 6 5 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 23.00000
+Shortest path:
+0 6 5 1 2 4 3 7 8 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 18.00000
+Shortest path:
+0 3 8 6 5 2 7 1 4 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 32.00000
+Shortest path:
+0 3 1 7 8 6 2 4 5 
+Time elapsed of Brute Force: 0.00200 sec 
+V: 9
+Shortest distance: 27.00000
+Shortest path:
+0 4 2 8 1 7 6 3 5 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 23.00000
+Shortest path:
+0 2 8 4 5 7 1 6 3 
+Time elapsed of Brute Force: 0.00300 sec 
+V: 9
+Shortest distance: 24.00000
+Shortest path:
+0 2 7 1 6 4 3 5 8 
+Time elapsed of Brute Force: 0.00500 sec 
+V: 9
+Shortest distance: 28.00000
+Shortest path:
+0 3 7 8 1 2 4 5 6 
+Time elapsed of Brute Force: 0.00300 sec 
+V: 9
+Shortest distance: 26.00000
+Shortest path:
+0 1 5 8 4 7 2 3 6 
+Time elapsed of Brute Force: 0.00300 sec 
+V: 9
+Shortest distance: 25.00000
+Shortest path:
+0 4 6 3 7 1 5 2 8 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 18.00000
+Shortest path:
+0 2 4 3 5 8 1 7 6 
+Time elapsed of Brute Force: 0.00300 sec 
+V: 9
+Shortest distance: 28.00000
+Shortest path:
+0 4 1 2 7 8 3 6 5 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 27.00000
+Shortest path:
+0 2 8 3 5 1 4 7 6 
+Time elapsed of Brute Force: 0.00400 sec 
+V: 9
+Shortest distance: 32.00000
+Shortest path:
+0 2 6 1 5 3 8 4 7 
+Time elapsed of Brute Force: 0.00300 sec 
+MEDIA: 3.60000

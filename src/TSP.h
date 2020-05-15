@@ -10,6 +10,7 @@ private:
     void permutation(int array[], int size, int n);
     void walkThePath(int *array);
     void showResult();
+    int *initializePath(int *paths, int V);
 
 public:
     TSP(Graph graph);

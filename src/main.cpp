@@ -1,4 +1,6 @@
 #include <iostream>
+#include <time.h>
+#include <bits/stdc++.h>
 
 #include "graph.h"
 #include "TSP.h"
@@ -7,6 +9,10 @@ using namespace std;
 
 #define UNDEFINED -1
 #define ENDOFROUTE -1
+#define EXECUTIONS 10
+#define NUMBEROFGRAPHS 15
+
+void printClock(clock_t start, clock_t end, string msg);
 
 void debug()
 {
@@ -21,41 +27,72 @@ void debug()
     graph.createLigation(2, 4, 3);
     graph.createLigation(4, 3, 5); */
 
-    Graph graph(20);
+    Graph graph(10);
 
     graph.newRandomGraph();
 
     graph.print();
     TSP bruteForce(graph);
 
-    cout << "COMPUTING..." << endl;
-    bruteForce.bruteForce();
+    clock_t start, end;
 
-    cout << "END" << endl;
+    //cout << "STARTING BRUTE FORCE" << endl;
+    start = clock();
+    bruteForce.bruteForce();
+    end = clock();
+    printClock(start, end, "Time elapsed of Brute Force");
+}
+
+void printClock(clock_t start, clock_t end, string msg)
+{
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    cout << msg << ": " << fixed
+         << time_taken << setprecision(5);
+    cout << " sec " << endl;
 }
 
 int main()
 {
-    debug();
+    //debug();
     int vertexs, edges;
     int x, y, weight;
-    cin >> vertexs;
-    cin >> edges;
 
-    Graph graph(vertexs);
+    int actualV = 3;
 
-    for (int i = 0; i < edges; i++)
+    double timeTaken = 0;
+
+    while (scanf("%d %d", &vertexs, &edges) != EOF)
     {
-        cin >> x;
-        cin >> y;
-        cin >> weight;
+        if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
+        {
+            cout << "MEDIA: " << timeTaken / NUMBEROFGRAPHS;
 
-        graph.createLigation(x, y, weight);
+            actualV = vertexs;
+            if (vertexs == 12)
+                return 0;
+        }
+
+        Graph graph(vertexs);
+        for (int i = 0; i < edges; i++)
+        {
+            cin >> x;
+            cin >> y;
+            cin >> weight;
+
+            graph.createLigation(x, y, weight);
+        }
+
+        //graph.print();
+
+        TSP tsp(graph);
+
+        clock_t start, end;
+        start = clock();
+        tsp.bruteForce();
+        end = clock();
+
+        timeTaken += double(end - start);
+
+        printClock(start, end, "Time elapsed of Brute Force");
     }
-
-    graph.print();
-
-    TSP brute(graph);
-
-    brute.bruteForce();
 }

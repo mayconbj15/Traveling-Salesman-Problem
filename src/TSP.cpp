@@ -27,13 +27,29 @@ void printArray(int *array, int n)
 
 void TSP::showResult()
 {
-    cout << "MENOR DISTANCIA: " << distance << endl;
-    cout << "CIDADES:" << endl;
+    cout << "V: " << this->graph.getV() << endl;
+    cout << "Shortest distance: " << distance << endl;
+    cout << "Shortest path:" << endl;
 
     for (int i = 0; i < graph.getV(); i++)
         cout << cities[i] << " ";
 
     cout << endl;
+}
+
+/**
+ * Função que gera um conjunto de vértices padrão que será permutado
+ * 
+ * @return um array com de 0 a V
+ */
+int *TSP::initializePath(int *paths, int V)
+{
+    int i = 0;
+    for (i = 0; i < V; i++)
+        paths[i] = i;
+    paths[i] = 0;
+
+    return paths;
 }
 
 /**
@@ -46,10 +62,7 @@ void TSP::bruteForce()
     int *paths = new int[V + 1];
 
     // Gera um vetor com os vertices que serão permutados
-    int i = 0;
-    for (i = 0; i < V; i++)
-        paths[i] = i;
-    paths[i] = 0;
+    paths = initializePath(paths, V);
 
     permutation(paths, V, V);
 
