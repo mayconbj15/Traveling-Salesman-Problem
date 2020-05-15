@@ -25,9 +25,10 @@ double runAlgorithm(Graph& graph, double& timeTaken)
     return time;
 }
 
+template<typename Algorithm>
 void debug()
 {
-    Graph graph(5);
+    Graph graph(4);
 
     graph.createLigation(0, 1, 10);
     graph.createLigation(0, 2, 15);
@@ -43,12 +44,12 @@ void debug()
     */
 
     graph.print();
-    runAlgorithm<BruteForce>(graph);
+    runAlgorithm<Algorithm>(graph);
 }
 
 int main()
 {
-    // debug();
+    // debug<BranchAndBound>();
     
     srand(time(NULL));
     int vertexs, edges;
@@ -86,4 +87,5 @@ int main()
         runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
         cout << "----------------" << endl;
     }
+    
 }

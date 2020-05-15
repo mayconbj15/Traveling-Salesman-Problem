@@ -55,7 +55,7 @@ int BranchAndBound::segundoMenor(int vertice)
 }
 
 void BranchAndBound::branchAndBound(
-    int parcial, int nivel, int limite_atual, int *caminhoParcial, bool *visitados, int menorCaminho)
+    int parcial, int nivel, int limite_atual, int *caminhoParcial, bool *visitados)
 {
     int vertices = this->graph.getV();
     double **matriz = this->graph.getGraph();
@@ -71,10 +71,10 @@ void BranchAndBound::branchAndBound(
 
                 // Se o caminho parcial já é maior que o menor
                 // caminho atual, então podemos atualizar o melhor caminho.
-                if (resultadoAtual < menorCaminho)
+                if (resultadoAtual < this->distance)
                 {
                     atualizarMelhorCaminho(caminhoParcial);
-                    menorCaminho = resultadoAtual;
+                    this->distance = resultadoAtual;
                 }
             }
         }
@@ -97,11 +97,11 @@ void BranchAndBound::branchAndBound(
 
                 // Se o caminho parcial já é maior que o menor
                 // caminho atual, então podemos descartar esta computação.
-                if (parcial + limite_atual < menorCaminho)
+                if (parcial + limite_atual < this->distance)
                 {
                     caminhoParcial[nivel] = x;
                     visitados[x] = true;
-                    branchAndBound(parcial, nivel + 1, limite_atual, caminhoParcial, visitados, menorCaminho);
+                    branchAndBound(parcial, nivel + 1, limite_atual, caminhoParcial, visitados);
                 }
 
                 parcial -= matriz[nivelAnterior][x];
@@ -135,6 +135,6 @@ void BranchAndBound::run()
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
-    branchAndBound(0, 1, limite_atual, caminhoParcial, visitados, menorCaminho);
+    branchAndBound(0, 1, limite_atual, caminhoParcial, visitados);
     showResult();
 }

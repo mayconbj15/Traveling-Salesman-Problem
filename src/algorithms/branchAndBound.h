@@ -12,7 +12,7 @@ public:
 
     void atualizarMelhorCaminho(int* caminhoParcial);
     void branchAndBound(
-        int parcial, int nivel, int limite_atual, int *caminhoParcial, bool *visitados, int menorCaminho);
+        int parcial, int nivel, int limite_atual, int *caminhoParcial, bool *visitados);
     int primeiroMenor(int vertice);
     int segundoMenor(int vertice);
 };
