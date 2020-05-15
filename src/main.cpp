@@ -65,7 +65,7 @@ int main()
     {
         if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
         {
-            cout << "MEDIA: " << timeTaken / NUMBEROFGRAPHS;
+            cout << "MEDIA: " << timeTaken / NUMBEROFGRAPHS << endl;
 
             actualV = vertexs;
             if (vertexs == 12)

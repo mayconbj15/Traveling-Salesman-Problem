@@ -1,3 +1,10 @@
+/**
+ * Travelling Salesman Problem implementations:
+ * - Brute force
+ * - Branch and bound
+ * - Dynamic programming
+ * - Genetic algorithm
+ */
 class TSP
 {
 private:
