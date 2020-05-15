@@ -2,6 +2,7 @@
 #include "TSP.h"
 
 #include <iostream>
+#include <algorithm>
 #include <bits/stdc++.h>
 #include <stdint.h>
 
@@ -102,28 +103,38 @@ void TSP::permutation(int array[], int size, int n)
  * e faz a soma de seus pesos
  * 
  * @param array array de inteiro com os vértices a serem visitados
+ * 
+ * @return Custo ao seguir essa sequência de vértices.
+ */
+double TSP::sumPath(int *array)
+{
+    double sum = 0.0;
+    int V = this->graph.getV(), weight;
+    double **graphMatrix = this->graph.getGraph();
+
+    for (int i = 0, j = 1; j < V + 1; i++, j++)
+    {
+        weight = graphMatrix[array[i]][array[j]];
+
+        if (weight != UNDEFINED) sum += weight;
+        else return -1; // O caminho não gera um ciclo hamiltoniano (faltou aresta)
+    }
+    
+    return sum;
+}
+
+/**
+ * Função que percorre um determinado conjunto de vertices dado em um array de inteiro
+ * e faz a soma de seus pesos
+ * 
+ * @param array array de inteiro com os vértices a serem visitados
  */
 void TSP::walkThePath(int *array)
 {
-    double sum = 0.0;
     int V = this->graph.getV();
-    double **graphMatrix = this->graph.getGraph();
+    double sum = sumPath(array);
 
-    int i = 0;
-    int j = 1;
-    for (; j < V + 1; i++, j++)
-    {
-        if (graphMatrix[array[i]][array[j]] != UNDEFINED)
-        {
-            sum += graphMatrix[array[i]][array[j]];
-        }
-
-        else
-        {
-            return; //O caminho não gera um ciclo hamiltoniano
-        }
-    }
-
+    if (sum == -1) return;
     if (sum < this->distance)
     {
         this->distance = sum;
@@ -140,5 +151,10 @@ void TSP::walkThePath(int *array)
 void TSP::geneticAlgorithm()
 {
     int numVertices = this->graph.getV();
-    // int verticesIndexes = createChromosome(numVertices);
+    // int populationSize = ((numVertices - 1) * (numVertices - 1)) / 4;
+    // if (populationSize < 1) populationSize = 1;
+    // int *bestIndividual = createRandomPath(numVertices), *individual;
+    // int bestFitness = sumPath(bestIndividual), fitness;
+
+    // delete bestIndividual;
 }
