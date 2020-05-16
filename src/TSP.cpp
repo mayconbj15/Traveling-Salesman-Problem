@@ -55,7 +55,7 @@ void printArray(int *array, int n)
 
 void TSP::showResult()
 {
-    cout << "Shortest distance: " << distance << endl;
+    cout << "Shortest distance: " << (int) distance << endl;
     cout << "Shortest path:" << endl;
     printArray(cities, graph.getV());
 }
