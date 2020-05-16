@@ -5,6 +5,7 @@
         "new": "cpp",
         "iomanip": "cpp",
         "*.tcc": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "algorithm": "cpp"
     }
 }

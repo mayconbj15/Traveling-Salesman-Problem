@@ -11,21 +11,21 @@
 
 using namespace std;
 
-template<typename Algorithm>
-double runAlgorithm(Graph& graph)
+template <typename Algorithm>
+double runAlgorithm(Graph &graph)
 {
     return Algorithm(graph).runAndCountTime();
 }
 
-template<typename Algorithm>
-double runAlgorithm(Graph& graph, double& timeTaken)
+template <typename Algorithm>
+double runAlgorithm(Graph &graph, double &timeTaken)
 {
     double time = runAlgorithm<Algorithm>(graph);
     timeTaken += time;
     return time;
 }
 
-template<typename Algorithm>
+template <typename Algorithm>
 void debug()
 {
     Graph graph(4);
@@ -50,7 +50,7 @@ void debug()
 int main()
 {
     // debug<BranchAndBound>();
-    
+
     srand(time(NULL));
     int vertexs, edges;
     int x, y, weight;
@@ -66,8 +66,6 @@ int main()
             cout << "MEDIA: " << timeTaken / NUMBEROFGRAPHS << endl;
 
             actualV = vertexs;
-            if (vertexs == 12)
-                return 0;
         }
 
         Graph graph(vertexs);
@@ -82,10 +80,11 @@ int main()
 
         //graph.print();
 
+        runAlgorithm<BranchAndBound>(graph, timeTaken);
+        cout << "----------------" << endl;
         runAlgorithm<BruteForce>(graph, timeTaken);
         cout << "----------------" << endl;
         runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
         cout << "----------------" << endl;
     }
-    
 }

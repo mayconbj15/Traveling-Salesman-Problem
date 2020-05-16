@@ -35,7 +35,8 @@ void BruteForce::walkThePath(int *array)
     int V = this->graph.getV();
     double sum = sumPath(array);
 
-    if (sum == -1) return;
+    if (sum == -1)
+        return;
     if (sum < this->distance)
     {
         this->distance = sum;
@@ -87,6 +88,4 @@ void BruteForce::run()
     paths = initializePath(paths, V);
 
     permutation(paths, V, V);
-
-    showResult();
 }

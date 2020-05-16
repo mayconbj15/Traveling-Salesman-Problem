@@ -9,45 +9,45 @@ using namespace std;
 
 BranchAndBound::BranchAndBound(Graph graph) : TSP(graph, "Branch and Bound") {}
 
-void BranchAndBound::atualizarMelhorCaminho(int* caminhoParcial)
+void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
 {
     int vertices = this->graph.getV();
-    for (int x = 0; x < vertices+1; x++)
-        this->cities[x] = caminhoParcial[x];    
-    
-    this->cities[vertices] = caminhoParcial[0];    
+    for (int x = 0; x < vertices + 1; x++)
+        this->cities[x] = caminhoParcial[x];
+
+    this->cities[vertices] = caminhoParcial[0];
 }
 
-int BranchAndBound::primeiroMenor(int vertice) 
+int BranchAndBound::primeiroMenor(int vertice)
 {
     int menor = MAX;
     int vertices = this->graph.getV();
-    double** matriz = this->graph.getGraph();
-
-    for(int x = 0; x < vertices; x++)
-    {        
-        if(vertice != x && matriz[vertice][x] < menor)
-            menor = matriz[vertice][x];
-    }
-    return menor; 
-}
-
-int BranchAndBound::segundoMenor(int vertice) 
-{
-    int primeiro_menor = MAX, segundo_menor = MAX;
-    int vertices = this->graph.getV();
-    double** matriz = this->graph.getGraph();
+    double **matriz = this->graph.getGraph();
 
     for (int x = 0; x < vertices; x++)
     {
-        if(x != vertice && matriz[vertice][x] <= primeiro_menor)
+        if (vertice != x && matriz[vertice][x] < menor)
+            menor = matriz[vertice][x];
+    }
+    return menor;
+}
+
+int BranchAndBound::segundoMenor(int vertice)
+{
+    int primeiro_menor = MAX, segundo_menor = MAX;
+    int vertices = this->graph.getV();
+    double **matriz = this->graph.getGraph();
+
+    for (int x = 0; x < vertices; x++)
+    {
+        if (x != vertice && matriz[vertice][x] <= primeiro_menor)
         {
             segundo_menor = primeiro_menor;
             primeiro_menor = matriz[vertice][x];
         }
         else
         {
-            if(matriz[vertice][x] <= segundo_menor && matriz[vertice][x] != primeiro_menor)
+            if (matriz[vertice][x] <= segundo_menor && matriz[vertice][x] != primeiro_menor)
                 segundo_menor = matriz[vertice][x];
         }
     }
@@ -83,17 +83,17 @@ void BranchAndBound::branchAndBound(
     {
         // Percorrer cidades
         for (int x = 0; x < vertices; x++)
-        {            
+        {
             // Se a cidade não foi visitada e tem caminho entre os vertices
             if (!visitados[x] && matriz[nivelAnterior][x] != 0)
             {
                 int aux = limite_atual;
                 parcial += matriz[nivelAnterior][x];
 
-                if(nivel == 1)
-                    limite_atual -= primeiroMenor(caminhoParcial[nivel-1]) + primeiroMenor(x)/2;
+                if (nivel == 1)
+                    limite_atual -= primeiroMenor(caminhoParcial[nivel - 1]) + primeiroMenor(x) / 2;
                 else
-                    limite_atual -= segundoMenor(caminhoParcial[nivel-1]) + primeiroMenor(x)/2;
+                    limite_atual -= segundoMenor(caminhoParcial[nivel - 1]) + primeiroMenor(x) / 2;
 
                 // Se o caminho parcial já é maior que o menor
                 // caminho atual, então podemos descartar esta computação.
@@ -130,11 +130,10 @@ void BranchAndBound::run()
 
     for (int x = 0; x < vertices; x++)
         limite_atual += (primeiroMenor(x) + segundoMenor(x));
-    limite_atual = (limite_atual & 1)? limite_atual/2 + 1 : limite_atual/2;
+    limite_atual = (limite_atual & 1) ? limite_atual / 2 + 1 : limite_atual / 2;
 
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
     branchAndBound(0, 1, limite_atual, caminhoParcial, visitados);
-    showResult();
 }

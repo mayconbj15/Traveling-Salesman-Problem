@@ -14,17 +14,15 @@
 
 using namespace std;
 
-TSP::TSP(Graph graph, string name) :
-    graph(graph),
-    cities(new int[graph.getV()]),
-    distance(MAX),
-    name(name) {}
+TSP::TSP(Graph graph, string name) : graph(graph),
+                                     cities(new int[graph.getV()]),
+                                     distance(MAX),
+                                     name(name) {}
 
 void TSP::printClock()
 {
     cout << "Time elapsed for " << name << ": " << fixed
-        << time << setprecision(5);
-    cout << " sec " << endl;
+         << (int)time << " ms " << endl;
 }
 
 double TSP::runAndCountTime()
@@ -32,13 +30,17 @@ double TSP::runAndCountTime()
     clock_t start, end;
 
     start = clock();
+
     cout << "Starting: " << name << endl;
+    cout << "V: " << this->graph.getV() << endl;
     run();
     cout << "Ending: " << name << endl;
+
     end = clock();
 
-    time = double(end - start) / double(CLOCKS_PER_SEC);
+    time = double(end - start);
     totalTime += time;
+    showResult();
     printClock();
 
     return time;
@@ -53,7 +55,6 @@ void printArray(int *array, int n)
 
 void TSP::showResult()
 {
-    cout << "V: " << this->graph.getV() << endl;
     cout << "Shortest distance: " << distance << endl;
     cout << "Shortest path:" << endl;
     printArray(cities, graph.getV());
@@ -77,10 +78,12 @@ double TSP::sumPath(int *array, int arraySize)
     {
         weight = graphMatrix[array[i]][array[j]];
 
-        if (weight != UNDEFINED) sum += weight;
-        else return -1; // O caminho não gera um ciclo hamiltoniano (faltou aresta)
+        if (weight != UNDEFINED)
+            sum += weight;
+        else
+            return -1; // O caminho não gera um ciclo hamiltoniano (faltou aresta)
     }
-    
+
     return sum;
 }
 
