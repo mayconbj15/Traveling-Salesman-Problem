@@ -6,6 +6,7 @@
 class BranchAndBound : public TSP
 {
 public:
+    BranchAndBound();
     BranchAndBound(Graph graph);
     
     void run();
