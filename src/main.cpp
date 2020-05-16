@@ -49,8 +49,9 @@ void debug()
 
 int main()
 {
-    // debug<BranchAndBound>();
-
+    //debug<BruteForce>();
+    //debug<BranchAndBound>();
+    
     srand(time(NULL));
     int vertexs, edges;
     int x, y, weight;
@@ -86,5 +87,5 @@ int main()
         cout << "----------------" << endl;
         runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
         cout << "----------------" << endl;
-    }
+    }    
 }
