@@ -1,9 +1,12 @@
 pushd src
 
-$files = $(ls algorithms/*.cpp -name | foreach{echo algorithms\$_})
+$files = $(Get-ChildItem algorithms/*.cpp -name | foreach {
+    echo "algorithms/$_"
+})
 
 g++ -o main.exe `
-    -std=c++11 `
+    -std=c++14 `
     -I algorithms $files `
     main.cpp TSP.cpp graph.cpp
+
 popd
