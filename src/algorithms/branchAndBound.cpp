@@ -13,10 +13,8 @@ BranchAndBound::BranchAndBound(Graph graph) : TSP(graph, "Branch and Bound") {}
 void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
 {
     int vertices = this->graph.getV();
-    for (int x = 0; x < vertices + 1; x++)
+    for (int x = 0; x < vertices; x++)
         this->cities[x] = caminhoParcial[x];
-
-    this->cities[vertices] = caminhoParcial[0];
 }
 
 int BranchAndBound::primeiroMenor(int vertice)
@@ -91,15 +89,7 @@ void BranchAndBound::branchAndBound(
             if (!visitados[x] && matriz[nivelAnterior][x] != 0)
             {
                 parcial += matriz[nivelAnterior][x]; // salvar caminho anterior
-
-                /*
-                Tentando entender
-                int limite_atual_aux = limite_atual; // salvar limite_atual para recuperá-lo mais tarde
-                if (nivel == 1)
-                    limite_atual_aux -= (primeiroMenor(caminhoParcial[nivel - 1]) + primeiroMenor(x)) / 2;
-                else
-                    limite_atual_aux -= (segundoMenor(caminhoParcial[nivel - 1]) + primeiroMenor(x)) / 2;
-                */
+                            
                 // Se o caminho parcial já é maior que o menor
                 // caminho atual, então podemos descartar esta computação.
                 if (parcial < this->distance)
@@ -124,20 +114,11 @@ void BranchAndBound::run()
     int vertices = this->graph.getV();
     int menorCaminho = MAX;
     int *caminhoParcial = new int[vertices + 1];
-    int *melhorCaminho = new int[vertices + 1];
     bool *visitados = new bool[vertices];
 
     memset(caminhoParcial, -1, vertices + 1);
-    memset(melhorCaminho, -1, vertices + 1);
-    memset(visitados, false, vertices);
-
-    /*
-    int limite_atual = 0;
-    for (int x = 0; x < vertices; x++)
-        limite_atual += (primeiroMenor(x) + segundoMenor(x));
-
-    limite_atual = (limite_atual & 1) ? limite_atual / 2 + 1 : limite_atual / 2;
-    */
+    memset(visitados, false, vertices);    
+    
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
