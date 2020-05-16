@@ -80,12 +80,14 @@ int main()
         }
 
         //graph.print();
-
+        
         runAlgorithm<BranchAndBound>(graph, timeTaken);
         cout << "----------------" << endl;
-        runAlgorithm<BruteForce>(graph, timeTaken);
-        cout << "----------------" << endl;
-        runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
-        cout << "----------------" << endl;
-    }    
+        
+        
+        // runAlgorithm<BruteForce>(graph, timeTaken);
+        // cout << "----------------" << endl;
+        // runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
+        // cout << "----------------" << endl;
+    }      
 }
