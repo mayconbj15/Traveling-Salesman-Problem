@@ -5,6 +5,7 @@
 
 using namespace std;
 
+GeneticAlgorithm::GeneticAlgorithm() : TSP("Genetic Algorithm") {}
 GeneticAlgorithm::GeneticAlgorithm(Graph graph) : TSP(graph, "Genetic Algorithm") {}
 
 typedef struct {

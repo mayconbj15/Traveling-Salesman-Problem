@@ -6,6 +6,7 @@
 class BruteForce : public TSP
 {
 public:
+    BruteForce();
     BruteForce(Graph graph);
     
     void run();

@@ -7,6 +7,7 @@
 
 using namespace std;
 
+BranchAndBound::BranchAndBound() : TSP("Branch and Bound") {}
 BranchAndBound::BranchAndBound(Graph graph) : TSP(graph, "Branch and Bound") {}
 
 void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
