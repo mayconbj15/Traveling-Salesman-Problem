@@ -20,7 +20,8 @@ using namespace std;
 template <typename Algorithm>
 double runAlgorithm(Graph &graph)
 {
-    return Algorithm(graph).runAndCountTime();
+    TSP &&algorithm = Algorithm(graph);
+    return algorithm.runAndCountTime();
 }
 
 template <typename Algorithm>
@@ -65,7 +66,7 @@ int main(int argc, char **argv)
             {
                 cout << "MEDIA " << algorithm->getName()
                     << " n = " << actualV << ": "
-                    << algorithm->getTotalTime() / NUMBEROFGRAPHS << endl;
+                    << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
                     
                 algorithm->setTotalTime(0);
             }

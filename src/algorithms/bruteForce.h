@@ -7,7 +7,8 @@ class BruteForce : public TSP
 {
 public:
     BruteForce();
-    BruteForce(Graph graph);
+    BruteForce(Graph &graph);
+    BruteForce(Graph &&graph);
     
     void run();
     

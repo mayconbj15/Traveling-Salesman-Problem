@@ -7,7 +7,8 @@ class DynamicProgramming : public TSP
 {
 public:
     DynamicProgramming();
-    DynamicProgramming(Graph graph);
+    DynamicProgramming(Graph &graph);
+    DynamicProgramming(Graph &&graph);
     
     void run();
 };

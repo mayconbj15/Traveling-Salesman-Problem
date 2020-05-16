@@ -16,9 +16,14 @@ using namespace std;
 
 TSP::TSP() : TSP("unknown") {}
 
-TSP::TSP(string name) : name(name) {}
+TSP::TSP(string name) : TSP(Graph(0), name) {}
 
-TSP::TSP(Graph graph, string name) : graph(graph),
+TSP::TSP(Graph &graph, string name) : graph(graph),
+                                     cities(new int[graph.getV()]),
+                                     distance(MAX),
+                                     name(name) {}
+
+TSP::TSP(Graph &&graph, string name) : graph(graph),
                                      cities(new int[graph.getV()]),
                                      distance(MAX),
                                      name(name) {}

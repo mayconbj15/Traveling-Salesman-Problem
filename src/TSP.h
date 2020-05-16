@@ -37,7 +37,8 @@ protected:
 public:
     TSP();
     TSP(string name);
-    TSP(Graph graph, string name);
+    TSP(Graph &graph, string name);
+    TSP(Graph &&graph, string name);
 
     void setGraph(Graph &graph);
     void setName(string name);
