@@ -68,11 +68,12 @@ double **Graph::getGraph()
  */
 void Graph::print()
 {
+    cout << "GRAPH:" << endl;
     for (int i = 0; i < this->V; i++)
     {
         for (int j = 0; j < this->V; j++)
         {
-            cout << this->graph[i][j] << " ";
+            cout << (int) this->graph[i][j] << " ";
         }
         cout << endl;
     }

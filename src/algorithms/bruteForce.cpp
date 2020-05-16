@@ -7,6 +7,7 @@
 
 using namespace std;
 
+BruteForce::BruteForce() : TSP("Brute Force") {}
 BruteForce::BruteForce(Graph graph) : TSP(graph, "Brute Force") {}
 
 /**
