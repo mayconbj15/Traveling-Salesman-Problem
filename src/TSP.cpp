@@ -14,10 +14,26 @@
 
 using namespace std;
 
+TSP::TSP() : TSP("unknown") {}
+
+TSP::TSP(string name) : name(name) {}
+
 TSP::TSP(Graph graph, string name) : graph(graph),
                                      cities(new int[graph.getV()]),
                                      distance(MAX),
                                      name(name) {}
+
+void TSP::setGraph(Graph &graph)
+{
+    this->graph = graph;
+    this->cities = new int[graph.getV()];
+}
+
+void TSP::setName(string name) { this->name = name; }
+string TSP::getName() { return name; }
+
+void TSP::setTotalTime(double name) { this->totalTime = totalTime; }
+double TSP::getTotalTime() { return totalTime; }
 
 void TSP::printClock()
 {
