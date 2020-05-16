@@ -7,6 +7,11 @@
       "args": [
         "${fileDirname}\\TSP.cpp",
         "${fileDirname}\\graph.cpp",
+        "${fileDirname}\\algorithms\\branchAndBound.cpp",
+        "${fileDirname}\\algorithms\\bruteForce.cpp",
+        "${fileDirname}\\algorithms\\dynamicProgramming.cpp",
+        "${fileDirname}\\algorithms\\geneticAlgorithm.cpp",
+        "-std=c++11",
         "-g",
         "${file}",
         "-o",

@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 
-#include "../constants.h"
+#include "constants.h"
 #include "graph.h"
 #include "TSP.h"
 
@@ -46,7 +46,7 @@ double TSP::runAndCountTime()
     return time;
 }
 
-void printArray(int *array, int n)
+void TSP::printArray(int *array, int n)
 {
     for (int i = 0; i < n; i++)
         cout << array[i] << " ";

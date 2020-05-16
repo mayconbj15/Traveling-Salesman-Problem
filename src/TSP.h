@@ -39,4 +39,6 @@ public:
 
     void printClock();
     double runAndCountTime();
+
+    void printArray(int *array, int n);
 };
