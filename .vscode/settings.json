@@ -6,6 +6,8 @@
         "iomanip": "cpp",
         "*.tcc": "cpp",
         "random": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "string": "cpp",
+        "memory": "cpp"
     }
 }
