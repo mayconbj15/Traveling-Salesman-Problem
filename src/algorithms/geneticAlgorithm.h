@@ -7,7 +7,8 @@ class GeneticAlgorithm : public TSP
 {
 public:
     GeneticAlgorithm();
-    GeneticAlgorithm(Graph graph);
+    GeneticAlgorithm(Graph &graph);
+    GeneticAlgorithm(Graph &&graph);
     
     void run();
 };

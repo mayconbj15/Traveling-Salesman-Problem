@@ -7,7 +7,8 @@ class BranchAndBound : public TSP
 {
 public:
     BranchAndBound();
-    BranchAndBound(Graph graph);
+    BranchAndBound(Graph &graph);
+    BranchAndBound(Graph &&graph);
     
     void run();
 
