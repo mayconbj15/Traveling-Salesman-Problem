@@ -6,7 +6,9 @@
 class DynamicProgramming : public TSP
 {
 public:
-    DynamicProgramming(Graph graph);
+    DynamicProgramming();
+    DynamicProgramming(Graph &graph);
+    DynamicProgramming(Graph &&graph);
 
     double **distances;
 

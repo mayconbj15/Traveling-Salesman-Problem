@@ -1,7 +1,7 @@
-#include <iostream> //tirar
-#include <vector>
 #include <algorithm>
 #include <string.h>
+#include <iostream>
+#include <vector>
 
 #include "../graph.h"
 #include "../constants.h"
@@ -9,7 +9,9 @@
 
 using namespace std;
 
-DynamicProgramming::DynamicProgramming(Graph graph) : TSP(graph, "Dynamic Programming") {}
+DynamicProgramming::DynamicProgramming() : TSP("Dynamic Programming") {}
+DynamicProgramming::DynamicProgramming(Graph &graph) : TSP(graph, "Dynamic Programming") {}
+DynamicProgramming::DynamicProgramming(Graph &&graph) : TSP(graph, "Dynamic Programming") {}
 
 /**
  * Função que gera um conjunto de vértices padrão que será permutado

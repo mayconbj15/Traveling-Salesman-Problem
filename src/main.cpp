@@ -1,9 +1,15 @@
 #include <iostream>
 #include <time.h>
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <vector>
+#include <string.h>
+#include <locale>
+#include <memory>
 
 #include "graph.h"
+#include "TSP.h"
 #include "constants.h"
+#include "arguments.h"
 #include "algorithms/branchAndBound.h"
 #include "algorithms/bruteForce.h"
 #include "algorithms/dynamicProgramming.h"
@@ -14,15 +20,8 @@ using namespace std;
 template <typename Algorithm>
 double runAlgorithm(Graph &graph)
 {
-    return Algorithm(graph).runAndCountTime();
-}
-
-template <typename Algorithm>
-double runAlgorithm(Graph &graph, double &timeTaken)
-{
-    double time = runAlgorithm<Algorithm>(graph);
-    timeTaken += time;
-    return time;
+    TSP &&algorithm = Algorithm(graph);
+    return algorithm.runAndCountTime();
 }
 
 template <typename Algorithm>
@@ -50,23 +49,30 @@ void debug()
     DynamicProgramming(graph).run();
 }
 
-int main()
+int main(int argc, char **argv)
 {
-    debug<DynamicProgramming>();
+    // debug<BranchAndBound>();
+    vector<unique_ptr<TSP>> algorithms;
+    readArgs(argc, argv, algorithms);
 
-    /*   srand(time(NULL));
+    srand(time(NULL));
     int vertexs, edges;
     int x, y, weight;
 
     int actualV = 3;
 
-    double timeTaken = 0;
-
     while (scanf("%d %d", &vertexs, &edges) != EOF)
     {
         if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
         {
-            cout << "MEDIA: " << timeTaken / NUMBEROFGRAPHS << endl;
+            for (auto &&algorithm : algorithms)
+            {
+                cout << "MEDIA " << algorithm->getName()
+                     << " n = " << actualV << ": "
+                     << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
+
+                algorithm->setTotalTime(0);
+            }
 
             actualV = vertexs;
         }
@@ -81,13 +87,13 @@ int main()
             graph.createLigation(x, y, weight);
         }
 
-        //graph.print();
+        // graph.print();
 
-        runAlgorithm<BranchAndBound>(graph, timeTaken);
-        cout << "----------------" << endl;
-        runAlgorithm<BruteForce>(graph, timeTaken);
-        cout << "----------------" << endl;
-        runAlgorithm<GeneticAlgorithm>(graph, timeTaken);
-        cout << "----------------" << endl;
-    } */
+        for (const auto &algorithm : algorithms)
+        {
+            algorithm->setGraph(graph);
+            algorithm->runAndCountTime();
+            cout << "----------------" << endl;
+        }
+    }
 }

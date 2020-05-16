@@ -14,10 +14,31 @@
 
 using namespace std;
 
-TSP::TSP(Graph graph, string name) : graph(graph),
+TSP::TSP() : TSP("unknown") {}
+
+TSP::TSP(string name) : TSP(Graph(0), name) {}
+
+TSP::TSP(Graph &graph, string name) : graph(graph),
                                      cities(new int[graph.getV()]),
                                      distance(MAX),
                                      name(name) {}
+
+TSP::TSP(Graph &&graph, string name) : graph(graph),
+                                     cities(new int[graph.getV()]),
+                                     distance(MAX),
+                                     name(name) {}
+
+void TSP::setGraph(Graph &graph)
+{
+    this->graph = graph;
+    this->cities = new int[graph.getV()];
+}
+
+void TSP::setName(string name) { this->name = name; }
+string TSP::getName() { return name; }
+
+void TSP::setTotalTime(double name) { this->totalTime = totalTime; }
+double TSP::getTotalTime() { return totalTime; }
 
 void TSP::printClock()
 {
@@ -38,7 +59,7 @@ double TSP::runAndCountTime()
 
     end = clock();
 
-    time = double(end - start);
+    time = double(end - start) / CLOCKS_PER_SEC * 1000;
     totalTime += time;
     showResult();
     printClock();
@@ -55,7 +76,7 @@ void TSP::printArray(int *array, int n)
 
 void TSP::showResult()
 {
-    cout << "Shortest distance: " << distance << endl;
+    cout << "Shortest distance: " << (int) distance << endl;
     cout << "Shortest path:" << endl;
     printArray(cities, graph.getV());
 }

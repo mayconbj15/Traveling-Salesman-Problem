@@ -49,9 +49,9 @@ void Graph::createLigation(int x, int y, double weight)
 }
 
 /**
- * Função que retorna a quantidade de vertíces do grafo
+ * Função que retorna a quantidade de vertices do grafo
  * 
- * @return quantidade de vertíces do grafo
+ * @return quantidade de vertices do grafo
  */
 int Graph::getV()
 {
@@ -68,11 +68,12 @@ double **Graph::getGraph()
  */
 void Graph::print()
 {
+    cout << "GRAPH:" << endl;
     for (int i = 0; i < this->V; i++)
     {
         for (int j = 0; j < this->V; j++)
         {
-            cout << this->graph[i][j] << " ";
+            cout << (int) this->graph[i][j] << " ";
         }
         cout << endl;
     }

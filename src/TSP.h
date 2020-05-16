@@ -35,8 +35,16 @@ protected:
     void showResult();
 
 public:
-    TSP(Graph graph, string name);
+    TSP();
+    TSP(string name);
+    TSP(Graph &graph, string name);
+    TSP(Graph &&graph, string name);
 
+    void setGraph(Graph &graph);
+    void setName(string name);
+    string getName();
+    void setTotalTime(double totalTime);
+    double getTotalTime();
     void printClock();
     double runAndCountTime();
 

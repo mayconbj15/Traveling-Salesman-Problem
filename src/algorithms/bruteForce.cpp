@@ -7,7 +7,9 @@
 
 using namespace std;
 
-BruteForce::BruteForce(Graph graph) : TSP(graph, "Brute Force") {}
+BruteForce::BruteForce() : TSP("Brute Force") {}
+BruteForce::BruteForce(Graph &graph) : TSP(graph, "Brute Force") {}
+BruteForce::BruteForce(Graph &&graph) : TSP(graph, "Brute Force") {}
 
 /**
  * Função que gera um conjunto de vértices padrão que será permutado
@@ -80,6 +82,7 @@ void BruteForce::permutation(int array[], int size, int n)
  */
 void BruteForce::run()
 {
+    this->distance = INT32_MAX;
     int V = this->graph.getV();
 
     int *paths = new int[V + 1];
