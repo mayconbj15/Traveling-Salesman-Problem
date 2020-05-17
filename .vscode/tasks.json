@@ -1,48 +1,47 @@
 {
-<<<<<<< HEAD
-  "tasks": [
-    {
-      "type": "shell",
-      "label": "g++.exe build active file",
-      "command": "C:\\TDM-GCC-64\\bin\\g++.exe",
-      "args": [
-        "${fileDirname}\\TSP.cpp",
-        "${fileDirname}\\graph.cpp",
-        "${fileDirname}\\algorithms\\branchAndBound.cpp",
-        "${fileDirname}\\algorithms\\bruteForce.cpp",
-        "${fileDirname}\\algorithms\\dynamicProgramming.cpp",
-        "${fileDirname}\\algorithms\\geneticAlgorithm.cpp",
-        "-std=c++11",
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-      ],
-      "options": {
-        "cwd": "C:\\TDM-GCC-64\\bin"
-      }
-    }
-  ],
-  "version": "2.0.0"
-=======
     "tasks": [
         {
             "type": "shell",
             "label": "g++.exe build active file",
-            "command": "C:\\TDM-GCC-64\\bin\\g++.exe",
+            "command": "C:/TDM-GCC-64/bin/g++.exe",
             "args": [
-                "${fileDirname}\\TSP.cpp",
-                "${fileDirname}\\graph.cpp",
+                "${fileDirname}/TSP.cpp",
+                "${fileDirname}/graph.cpp",
+                "${fileDirname}/algorithms/branchAndBound.cpp",
+                "${fileDirname}/algorithms/bruteForce.cpp",
+                "${fileDirname}/algorithms/dynamicProgramming.cpp",
+                "${fileDirname}/algorithms/geneticAlgorithm.cpp",
+                "-std=c++14",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:\\TDM-GCC-64\\bin"
+                "cwd": "C:/TDM-GCC-64/bin"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "${fileDirname}/TSP.cpp",
+                "${fileDirname}/graph.cpp",
+                "${fileDirname}/algorithms/branchAndBound.cpp",
+                "${fileDirname}/algorithms/bruteForce.cpp",
+                "${fileDirname}/algorithms/dynamicProgramming.cpp",
+                "${fileDirname}/algorithms/geneticAlgorithm.cpp",
+                "-std=c++14",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
             }
         }
     ],
     "version": "2.0.0"
->>>>>>> 2b7218c3b574cc15f04cb0fb3933bd4b9ce2cdf2
 }
