@@ -91,4 +91,5 @@ void BruteForce::run()
     paths = initializePath(paths, V);
 
     permutation(paths, V, V);
+    delete[] paths;
 }

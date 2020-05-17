@@ -18,6 +18,24 @@ Graph::Graph(int V)
     initializeGraph();
 }
 
+Graph::~Graph()
+{
+    for (int i = 0; i < this->V; i++) delete[] graph[i];
+    delete[] graph;
+}
+
+Graph::Graph(const Graph &other)
+{
+    int numVertices = V = other.V;
+    graph = new double*[numVertices];
+
+    for (size_t i = 0; i < numVertices; i++)
+    {
+        graph[i] = new double[numVertices];
+        memcpy(graph[i], other.graph[i], sizeof(double) * numVertices);
+    }
+}
+
 /**
  * Inicializa um grafo com valores default
  */

@@ -48,9 +48,13 @@ void debug()
     // DynamicProgramming(graph).run();
 }
 
+#define DEBUG 0
+
 int main(int argc, char **argv)
 {
-    // debug<DynamicProgramming>();
+    #if DEBUG
+    debug<GeneticAlgorithm>();
+    #else
     vector<unique_ptr<TSP>> algorithms;
     readArgs(argc, argv, algorithms);
 
@@ -95,4 +99,5 @@ int main(int argc, char **argv)
             cout << "----------------" << endl;
         }
     }
+    #endif
 }
