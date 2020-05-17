@@ -17,6 +17,8 @@
 
 using namespace std;
 
+extern int graphicOutput;
+
 template <typename Algorithm>
 double runAlgorithm(Graph &graph)
 {
@@ -70,12 +72,16 @@ int main(int argc, char **argv)
         {
             for (auto &&algorithm : algorithms)
             {
-                cout << "MEDIA " << algorithm->getName()
-                     << " n = " << actualV << ": "
-                     << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
+                if (!graphicOutput) {
+                    cout << "MEDIA " << algorithm->getName()
+                        << " n = " << actualV << ": "
+                        << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
+                }
+                else cout << algorithm->getTotalTime() / NUMBEROFGRAPHS << ",";
 
                 algorithm->setTotalTime(0);
             }
+            cout << endl;
 
             actualV = vertexs;
         }
@@ -96,7 +102,7 @@ int main(int argc, char **argv)
         {
             algorithm->setGraph(graph);
             algorithm->runAndCountTime();
-            cout << "----------------" << endl;
+            if (!graphicOutput) cout << "----------------" << endl;
         }
     }
     #endif

@@ -14,6 +14,8 @@
 
 using namespace std;
 
+extern int graphicOutput;
+
 TSP::TSP() : TSP("unknown") {}
 
 TSP::TSP(string name) : TSP(Graph(0), name) {}
@@ -42,7 +44,7 @@ double TSP::getTotalTime() { return totalTime; }
 
 void TSP::printClock()
 {
-    cout << "Time elapsed for " << name << ": " << fixed
+    if (!graphicOutput) cout << "Time elapsed for " << name << ": " << fixed
          << (int)time << " ms " << endl;
 }
 
@@ -52,10 +54,10 @@ double TSP::runAndCountTime()
 
     start = clock();
 
-    cout << "Starting >>> " << name << endl;
-    cout << "V: " << this->graph.getV() << endl;
+    if (!graphicOutput) cout << "Starting >>> " << name << endl;
+    if (!graphicOutput) cout << "V: " << this->graph.getV() << endl;
     run();
-    cout << "Ending <<< " << name << endl;
+    if (!graphicOutput) cout << "Ending <<< " << name << endl;
 
     end = clock();
 
@@ -69,15 +71,19 @@ double TSP::runAndCountTime()
 
 void TSP::printArray(int *array, int n)
 {
-    for (int i = 0; i < n; i++)
-        cout << array[i] << " ";
-    cout << endl;
+    if (!graphicOutput) {
+        for (int i = 0; i < n; i++)
+            cout << array[i] << " ";
+        cout << endl;
+    }
 }
 
 void TSP::showResult()
 {
-    cout << "Shortest distance: " << (int) distance << endl;
-    cout << "Shortest path:" << endl;
+    if (!graphicOutput) {
+        cout << "Shortest distance: " << (int) distance << endl;
+        cout << "Shortest path:" << endl;
+    }
     printArray(cities, graph.getV() + 1);
 }
 

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+extern int graphicOutput;
+
 DynamicProgramming::DynamicProgramming() : TSP("Dynamic Programming") {}
 DynamicProgramming::DynamicProgramming(Graph &graph) : TSP(graph, "Dynamic Programming") {}
 DynamicProgramming::DynamicProgramming(Graph &&graph) : TSP(graph, "Dynamic Programming") {}
@@ -97,8 +99,8 @@ void DynamicProgramming::run()
         }
     }
 
-    cout << "minDistance: " << walkGraph() << endl;
-    cout << "distance" << distance;
+    if (!graphicOutput) cout << "minDistance: " << walkGraph() << endl;
+    if (!graphicOutput) cout << "distance" << distance;
 
     for (int i = 0; i < V; i++) delete[] distances[i];
     delete[] distances;
@@ -170,7 +172,7 @@ double DynamicProgramming::walkGraphRec(int src, int i, double sum, vector<bool>
             int actualSum = graph.getGraph()[src][0];
             if (actualSum < this->distance)
             {
-                cout << "PATH: " << src << " ";
+                if (!graphicOutput) cout << "PATH: " << src << " ";
                 this->distance = actualSum;
                 return actualSum;
             }
@@ -180,7 +182,7 @@ double DynamicProgramming::walkGraphRec(int src, int i, double sum, vector<bool>
             /*  if (distances[src][i] != UNDEFINED)
                 return distances[src][i]; */
 
-            cout << "PATH: " << src << " ";
+            if (!graphicOutput) cout << "PATH: " << src << " ";
             distances[src][i] = graph.getGraph()[src][i];
             sum = walkGraphRec(i, src, sum, visited);
             sum += distances[src][i];
@@ -200,6 +202,6 @@ double DynamicProgramming::walkGraphRec(int src, int i, double sum, vector<bool>
                 this->distance = sum; */
         }
     }
-    cout << endl;
+    if (!graphicOutput) cout << endl;
     return minDistance;
 }
