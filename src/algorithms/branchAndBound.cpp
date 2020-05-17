@@ -79,8 +79,8 @@ void BranchAndBound::run()
     this->distance = MAX;
     int vertices = this->graph.getV();
     double **matriz = this->graph.getGraph();
-    int *caminhoParcial = new int[vertices + 1];
-    bool *visitados = new bool[vertices];
+    int caminhoParcial[vertices + 1];
+    bool visitados[vertices];
 
     memset(caminhoParcial, -1, vertices + 1);
     memset(visitados, false, vertices);    
@@ -88,7 +88,5 @@ void BranchAndBound::run()
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
-    branchAndBound(matriz, 0, 1, caminhoParcial, visitados);
-    delete[] caminhoParcial;
-    delete[] visitados;
+    branchAndBound(matriz, 0, 1, caminhoParcial, visitados);  
 }
