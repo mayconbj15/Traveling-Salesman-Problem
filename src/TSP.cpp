@@ -52,10 +52,10 @@ double TSP::runAndCountTime()
 
     start = clock();
 
-    cout << "Starting: " << name << endl;
+    cout << "Starting >>> " << name << endl;
     cout << "V: " << this->graph.getV() << endl;
     run();
-    cout << "Ending: " << name << endl;
+    cout << "Ending <<< " << name << endl;
 
     end = clock();
 
@@ -78,7 +78,7 @@ void TSP::showResult()
 {
     cout << "Shortest distance: " << (int) distance << endl;
     cout << "Shortest path:" << endl;
-    printArray(cities, graph.getV());
+    printArray(cities, graph.getV() + 1);
 }
 
 /**

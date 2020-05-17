@@ -25,7 +25,5 @@ public:
     void print();
     void newRandomGraph();
     void showResult();
-
-    /* Funções dos paradigmas */
-    void bruteForce();
+    bool edgeExist(int x, int y);
 };

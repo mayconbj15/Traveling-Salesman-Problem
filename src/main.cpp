@@ -25,7 +25,6 @@ double runAlgorithm(Graph &graph)
 }
 
 template <typename Algorithm>
-
 void debug()
 {
     Graph graph(4);
@@ -45,13 +44,13 @@ void debug()
 
     graph.print();
 
-    // runAlgorithm<BruteForce>(graph);
-    DynamicProgramming(graph).run();
+    runAlgorithm<Algorithm>(graph);
+    // DynamicProgramming(graph).run();
 }
 
 int main(int argc, char **argv)
 {
-    // debug<BranchAndBound>();
+    // debug<DynamicProgramming>();
     vector<unique_ptr<TSP>> algorithms;
     readArgs(argc, argv, algorithms);
 

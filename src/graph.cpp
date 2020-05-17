@@ -96,3 +96,8 @@ void Graph::newRandomGraph()
         }
     }
 }
+
+bool Graph::edgeExist(int x, int y)
+{
+    return graph[x][y] != UNDEFINED;
+}
