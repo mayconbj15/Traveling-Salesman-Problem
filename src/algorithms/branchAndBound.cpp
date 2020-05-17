@@ -14,7 +14,7 @@ BranchAndBound::BranchAndBound(Graph &&graph) : TSP(graph, "Branch and Bound") {
 
 void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
 {
-    int vertices = this->graph.getV();    
+    int vertices = this->graph.getV();
     for (int x = 0; x < vertices; x++)
         this->cities[x] = caminhoParcial[x];
 }
@@ -80,7 +80,7 @@ void BranchAndBound::run()
     int vertices = this->graph.getV();
     double **matriz = this->graph.getGraph();
     int *caminhoParcial = new int[vertices + 1];
-    bool *visitados = new bool[vertices];    
+    bool *visitados = new bool[vertices];
 
     memset(caminhoParcial, -1, vertices + 1);
     memset(visitados, false, vertices);    
@@ -89,7 +89,6 @@ void BranchAndBound::run()
     caminhoParcial[0] = 0;
 
     branchAndBound(matriz, 0, 1, caminhoParcial, visitados);
-    delete caminhoParcial;
-    delete visitados;
-    free(matriz);
+    delete[] caminhoParcial;
+    delete[] visitados;
 }

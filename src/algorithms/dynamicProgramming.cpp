@@ -99,6 +99,9 @@ void DynamicProgramming::run()
 
     cout << "minDistance: " << walkGraph() << endl;
     cout << "distance" << distance;
+
+    for (int i = 0; i < V; i++) delete[] distances[i];
+    delete[] distances;
 }
 
 /* double DynamicProgrammin::cost(int *array, int n)
