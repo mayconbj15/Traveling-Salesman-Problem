@@ -36,8 +36,3 @@ void generateInput()
         cout << endl;
     }
 }
-
-int main()
-{
-    generateInput();
-}
