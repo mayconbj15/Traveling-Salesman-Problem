@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -12,6 +14,8 @@
 #include "algorithms/geneticAlgorithm.h"
 
 using namespace std;
+
+int graphicOutput = 0;
 
 int readAlgorithms(int argc, char **argv, int i, vector<unique_ptr<TSP>> &algorithms)
 {
@@ -54,7 +58,8 @@ void readArgs(int argc, char **argv, vector<unique_ptr<TSP>> &algorithms)
     for (size_t i = 1; i < argc; i++)
     {
         if (argv[i][0] != '-') i = readAlgorithms(argc, argv, i, algorithms);
-        else if (strcmp(argv[i], "--help") || strcmp(argv[i], "-h"))
+        else if (strcmp(argv[i], "--graphic") == 0) graphicOutput = 1;
+        else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
         {
             showHelp();
             exit(0);
