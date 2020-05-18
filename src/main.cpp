@@ -17,8 +17,6 @@
 
 using namespace std;
 
-extern int graphicOutput;
-
 template <typename Algorithm>
 double runAlgorithm(Graph &graph)
 {
@@ -65,23 +63,30 @@ int main(int argc, char **argv)
     int x, y, weight;
 
     int actualV = 3;
-
+    
     while (scanf("%d %d", &vertexs, &edges) != EOF)
     {
+        if (csvOutput) cout.setstate(ios_base::failbit);
         if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
         {
             for (auto &&algorithm : algorithms)
             {
-                if (!graphicOutput) {
+                if (!csvOutput) {
                     cout << "MEDIA " << algorithm->getName()
                         << " n = " << actualV << ": "
                         << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
                 }
-                else cout << algorithm->getTotalTime() / NUMBEROFGRAPHS << ",";
+                else {
+                    cout.clear();
+                    cout << algorithm->getTotalTime() / NUMBEROFGRAPHS << ",";
+                    cout.setstate(ios_base::failbit);
+                }
 
                 algorithm->setTotalTime(0);
             }
+            if (csvOutput) cout.clear();
             cout << endl;
+            if (csvOutput) cout.setstate(ios_base::failbit);
 
             actualV = vertexs;
         }
@@ -100,9 +105,14 @@ int main(int argc, char **argv)
 
         for (const auto &algorithm : algorithms)
         {
-            algorithm->setGraph(graph);
-            algorithm->runAndCountTime();
-            if (!graphicOutput) cout << "----------------" << endl;
+            // Just run the code if we are using less than 15 cities or if
+            // we are not using the brute force algorithm
+            if (!(actualV == 15 && algorithm->getName().find("rute") != string::npos))
+            {
+                algorithm->setGraph(graph);
+                algorithm->runAndCountTime();
+                if (!csvOutput) cout << "----------------" << endl;
+            }
         }
     }
     #endif
