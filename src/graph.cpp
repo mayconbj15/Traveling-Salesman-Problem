@@ -9,8 +9,6 @@
 
 using namespace std;
 
-extern int graphicOutput;
-
 Graph::Graph() {}
 
 Graph::Graph(int V)
@@ -88,18 +86,16 @@ double **Graph::getGraph()
  */
 void Graph::print()
 {
-    if (!graphicOutput) {
-        cout << "GRAPH:" << endl;
-        for (int i = 0; i < this->V; i++)
+    cout << "GRAPH:" << endl;
+    for (int i = 0; i < this->V; i++)
+    {
+        for (int j = 0; j < this->V; j++)
         {
-            for (int j = 0; j < this->V; j++)
-            {
-                cout << (int) this->graph[i][j] << " ";
-            }
-            cout << endl;
+            cout << (int) this->graph[i][j] << " ";
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 /**
