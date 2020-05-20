@@ -8,10 +8,13 @@ importância do projeto e análise de algoritmos, o grupo propôs uma análise d
 problema clássico da Ciência da Computação, o Problema do Caixeiro Viajante (Traveling Salesman Problem).
 Os algoritmos utilizados foram:
 
-- Branch and Bound    
+
 - Brute Force
     >Gera permutações de todos os caminhos possíveis e verifica dentre eles qual forma um
     ciclo e dos que formam um ciclo qual tem a menor distância
+- Branch and Bound
+    >Gera uma árvore com todos os caminhos testando todas as ramificações parciais e podando aquelas que
+    já são maiores que a solução atual.
 - Dynamic Programming
 - Genetic Algorithm
 
