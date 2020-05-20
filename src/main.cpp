@@ -48,6 +48,28 @@ void debug()
     // DynamicProgramming(graph).run();
 }
 
+void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
+{
+    for (auto &&algorithm : algorithms)
+    {
+        if (!csvOutput) {
+            cout << "MEDIA " << algorithm->getName()
+                << " n = " << actualV << ": "
+                << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
+        }
+        else {
+            cout.clear();
+            cout << algorithm->getTotalTime() / NUMBEROFGRAPHS << ",";
+            cout.setstate(ios_base::failbit);
+        }
+
+        algorithm->setTotalTime(0);
+    }
+    if (csvOutput) cout.clear();
+    cout << endl;
+    if (csvOutput) cout.setstate(ios_base::failbit);
+}
+
 #define DEBUG 0
 
 int main(int argc, char **argv)
@@ -69,25 +91,7 @@ int main(int argc, char **argv)
         if (csvOutput) cout.setstate(ios_base::failbit);
         if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
         {
-            for (auto &&algorithm : algorithms)
-            {
-                if (!csvOutput) {
-                    cout << "MEDIA " << algorithm->getName()
-                        << " n = " << actualV << ": "
-                        << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
-                }
-                else {
-                    cout.clear();
-                    cout << algorithm->getTotalTime() / NUMBEROFGRAPHS << ",";
-                    cout.setstate(ios_base::failbit);
-                }
-
-                algorithm->setTotalTime(0);
-            }
-            if (csvOutput) cout.clear();
-            cout << endl;
-            if (csvOutput) cout.setstate(ios_base::failbit);
-
+            printMeanTime(algorithms, actualV);
             actualV = vertexs;
         }
 
@@ -115,5 +119,6 @@ int main(int argc, char **argv)
             }
         }
     }
+    printMeanTime(algorithms, actualV);
     #endif
 }
