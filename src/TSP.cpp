@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 
 #include "constants.h"
 #include "graph.h"
@@ -31,7 +32,7 @@ TSP::TSP(Graph &&graph, string name) : graph(graph),
 void TSP::setGraph(Graph &graph)
 {
     this->graph = graph;
-    this->cities = new int[graph.getV()];
+    this->cities = make_unique<int[]>(graph.getV());
 }
 
 void TSP::setName(string name) { this->name = name; }
@@ -78,7 +79,7 @@ void TSP::showResult()
 {
     cout << "Shortest distance: " << (int) distance << endl;
     cout << "Shortest path:" << endl;
-    printArray(cities, graph.getV() + 1);
+    printArray(cities.get(), graph.getV() + 1);
 }
 
 /**
