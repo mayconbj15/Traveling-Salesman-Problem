@@ -47,10 +47,11 @@ void showHelp()
 {
     printf("-------- TRAVELLING SALESMAN PROBLEM --------\n");
     puts("");
-    printf("USAGE: main.exe [-h|--help] [branch|brute|dynamic|genetic]...\n");
+    printf("USAGE: main.exe [-h|--help|--csv] [branch|brute|dynamic|genetic]...\n");
     puts("");
     printf("EXAMPLE: main.exe -h\n");
-    printf("EXAMPLE: main.exe branch genetic\n");
+    printf("EXAMPLE: main.exe branch genetic # run 'branch and bound' and 'genetic' approaches\n");
+    printf("EXAMPLE: main.exe branch genetic --csv # run algorithms and print the mean time in CSV format\n");
 }
 
 void readArgs(int argc, char **argv, vector<unique_ptr<TSP>> &algorithms)
