@@ -1,8 +1,12 @@
 # Traveling-Salesman-Problem
 
 ## 1) Introdução:
-Neste repositório iremos tratar o problema do Caixeiro Viajante. Para isso,
-iremos implementar quatro tipos de algoritmos para resolvê-lo:
+Em consonância com a expansão do mercado tecnológico, a complexidade dos problemas computacionais tem aumentado,
+o que implicou na busca de máquinas mais potentes para processá-los. Entretanto, tais recursos são limitados 
+e por isso devem ser utilizados de maneira eficiente. Tendo em vista esta problemática e com o objetivo de destacar a
+importância do projeto e análise de algoritmos, o grupo propôs uma análise de quatro soluções distintas para um
+problema clássico da Ciência da Computação, o Problema do Caixeiro Viajante (Traveling Salesman Problem).
+Os algoritmos utilizados foram:
 
 - Branch and Bound    
 - Brute Force
