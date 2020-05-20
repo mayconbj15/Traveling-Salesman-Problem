@@ -1,16 +1,22 @@
 #pragma once
 
+#include <vector>
+
 #include "../TSP.h"
 #include "../graph.h"
 
 /**
  * Chromosome
  */
-typedef struct {
+class Individual
+{
+public:
     /** Genes */
-    int *cities;
+    vector<int> cities;
     int pathCost = -1;
-} Individual;
+
+    Individual(int numCities) { cities.resize(numCities); }
+};
 
 class GeneticAlgorithm : public TSP
 {
@@ -21,7 +27,7 @@ public:
     
     void run();
 
-    int *createRandomPath(int numVertices);
+    void createRandomPath(int numVertices, vector<int> &cities);
 
     void mutateIndividual(Individual &individual, int numVertices, int numOfTries);
 
