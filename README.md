@@ -4,7 +4,7 @@
 Neste repositório iremos tratar o problema do Caixeiro Viajante. Para isso,
 iremos implementar quatro tipos de algoritmos para resolvê-lo:
 
-- Branch and Bound
+- Branch and Bound    
 - Brute Force
     >Gera permutações de todos os caminhos possíveis e verifica dentre eles qual forma um
     ciclo e dos que formam um ciclo qual tem a menor distância
@@ -96,6 +96,10 @@ subproblemas também foi bem interessante.
 #### Força Bruta
 https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/<br/>
 https://www2.cs.sfu.ca/CourseCentral/125/tjd/tsp_example.html
+
+### Branch and Bound
+https://www.geeksforgeeks.org/traveling-salesman-problem-using-branch-and-bound-2/<br />
+https://www.youtube.com/watch?v=1FEP_sNb62k<br />
 
 #### Algoritmo Genético
 https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/

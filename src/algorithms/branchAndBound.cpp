@@ -20,11 +20,15 @@ void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
 }
 
 void BranchAndBound::branchAndBound(
-    double** matriz, double parcial, int nivel, int *caminhoParcial, bool *visitados)
+    double** matriz, 
+    double parcial, 
+    int nivel, 
+    int *caminhoParcial, 
+    bool *visitados)
 {
     int vertices = this->graph.getV();    
     int nivelAnterior = caminhoParcial[nivel - 1];
-    // printf("%lf \n", this->distance);
+    
     // Se chegar no fim da árvore
     if (nivel == vertices)
     {
@@ -44,6 +48,7 @@ void BranchAndBound::branchAndBound(
             }
         }
     }
+
     else
     {
         // Se ainda não chegou ao final da árvore,
@@ -65,8 +70,7 @@ void BranchAndBound::branchAndBound(
                 }
 
                 parcial -= matriz[nivelAnterior][x];
-
-                memset(visitados, false, vertices);
+                memset(visitados, false, vertices);                
                 for (int y = 0; y < nivel; y++)
                     visitados[caminhoParcial[y]] = true;
             }
@@ -76,11 +80,12 @@ void BranchAndBound::branchAndBound(
 
 void BranchAndBound::run()
 {
-    this->distance = MAX;
     int vertices = this->graph.getV();
-    double **matriz = this->graph.getGraph();
     int caminhoParcial[vertices + 1];
     bool visitados[vertices];
+    double **matriz = this->graph.getGraph();
+    
+    this->distance = MAX;
 
     memset(caminhoParcial, -1, vertices + 1);
     memset(visitados, false, vertices);    
