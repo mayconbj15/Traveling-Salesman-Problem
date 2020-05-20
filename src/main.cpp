@@ -48,12 +48,12 @@ void debug()
     // DynamicProgramming(graph).run();
 }
 
-#define DEBUG 0
+#define DEBUG 1
 
 int main(int argc, char **argv)
 {
     #if DEBUG
-    debug<GeneticAlgorithm>();
+    debug<DynamicProgramming>();
     #else
     vector<unique_ptr<TSP>> algorithms;
     readArgs(argc, argv, algorithms);
