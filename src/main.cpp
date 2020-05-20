@@ -48,7 +48,7 @@ void debug()
     // DynamicProgramming(graph).run();
 }
 
-#define DEBUG 1
+#define DEBUG 0
 
 int main(int argc, char **argv)
 {

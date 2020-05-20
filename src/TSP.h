@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 #include "graph.h"
 
@@ -19,7 +20,7 @@ protected:
     Graph graph;
 
     double distance;
-    int *cities;
+    unique_ptr<int[]> cities;
 
     /** Nome do algoritmo */
     string name;
