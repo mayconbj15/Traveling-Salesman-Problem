@@ -32,6 +32,7 @@ Métodos principais por classe:
 
 - BranchAndBound
     - sumPath()
+    - atualizarMelhorCaminho(int *caminhoParcial)
 
 - BruteForce
     - sumPath()
