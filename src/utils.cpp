@@ -36,3 +36,22 @@ void generateInput()
         cout << endl;
     }
 }
+
+void generateInputV2()
+{
+    int numero_de_casos = 1000;
+    int cidades = 0;
+    int x = 0, y = 0;
+
+    for (int casos = 0; casos < numero_de_casos; casos++)
+    {
+        cidades = rand() % 100; // gerar numero de cidades do caso
+        printf("%d \n", cidades);
+
+        for (int coordenadas = 0; coordenadas < cidades; coordenadas++)
+        {
+            x = rand() % 1000, y = rand() % 1000;
+            printf("%d %d", x, y);
+        }
+    }
+}
