@@ -93,8 +93,8 @@ void createCompleteGraph(Graph &graph, vector<vertice> &vertexs_set)
         {
             distance = distBetweenVertexs(vertexs_set[x], vertexs_set[y]);
             graph.createLigation(x, y, distance);
-        }        
-    }    
+        }
+    }
 }
 
 #define DEBUG 0
