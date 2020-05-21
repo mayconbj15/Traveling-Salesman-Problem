@@ -43,15 +43,18 @@ void generateInputV2()
     int cidades = 0;
     int x = 0, y = 0;
 
-    for (int casos = 0; casos < numero_de_casos; casos++)
+    for (int cidades = 3; cidades <= N; cidades += 3)
     {
-        cidades = rand() % 100; // gerar numero de cidades do caso
-        printf("%d \n", cidades);
-
-        for (int coordenadas = 0; coordenadas < cidades; coordenadas++)
+        for (int casos = 0; casos < N; casos++)
         {
-            x = rand() % 1000, y = rand() % 1000;
-            printf("%d %d", x, y);
+            printf("%d \n", cidades);
+
+            for (int coordenadas = 0; coordenadas < cidades; coordenadas++)
+            {
+                x = rand() % 1000, y = rand() % 1000;
+                printf("%d %d\n", x, y);
+            }
         }
+        printf("\n");
     }
 }
