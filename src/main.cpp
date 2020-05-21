@@ -5,6 +5,7 @@
 #include <string.h>
 #include <locale>
 #include <memory>
+#include <math.h>
 
 #include "graph.h"
 #include "TSP.h"
@@ -14,6 +15,8 @@
 #include "algorithms/bruteForce.h"
 #include "algorithms/dynamicProgramming.h"
 #include "algorithms/geneticAlgorithm.h"
+
+typedef pair<int, int> vertice;
 
 using namespace std;
 
@@ -52,12 +55,14 @@ void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
 {
     for (auto &&algorithm : algorithms)
     {
-        if (!csvOutput) {
+        if (!csvOutput)
+        {
             cout << "MEDIA " << algorithm->getName()
-                << " n = " << actualV << ": "
-                << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
+                 << " n = " << actualV << ": "
+                 << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
         }
-        else {
+        else
+        {
             cout.clear();
             cout << algorithm->getTotalTime() / NUMBEROFGRAPHS << ",";
             cout.setstate(ios_base::failbit);
@@ -65,30 +70,54 @@ void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
 
         algorithm->setTotalTime(0);
     }
-    if (csvOutput) cout.clear();
+    if (csvOutput)
+        cout.clear();
     cout << endl;
-    if (csvOutput) cout.setstate(ios_base::failbit);
+    if (csvOutput)
+        cout.setstate(ios_base::failbit);
+}
+
+double distBetweenVertexs(vertice v1, vertice v2)
+{
+    return sqrt(pow((v2.first - v1.first), 2) + pow((v2.second - v1.second), 2));
+}
+
+void createCompleteGraph(Graph &graph, vector<vertice> &vertexs_set)
+{
+    double distance;
+    int vertexs = graph.getV();
+
+    for (int x = 0; x < vertexs; x++)
+    {
+        for (int y = 0; y < vertexs; y++)
+        {
+            distance = distBetweenVertexs(vertexs_set[x], vertexs_set[y]);
+            graph.createLigation(x, y, distance);
+        }        
+    }    
 }
 
 #define DEBUG 0
 
 int main(int argc, char **argv)
 {
-    #if DEBUG
+#if DEBUG
     debug<DynamicProgramming>();
-    #else
+#else
     vector<unique_ptr<TSP>> algorithms;
+    vector<vertice> vertex_set;
     readArgs(argc, argv, algorithms);
 
     srand(time(NULL));
-    int vertexs, edges;
+    int vertexs;
     int x, y, weight;
 
     int actualV = 3;
-    
-    while (scanf("%d %d", &vertexs, &edges) != EOF)
+
+    while (scanf("%d", &vertexs) != EOF)
     {
-        if (csvOutput) cout.setstate(ios_base::failbit);
+        if (csvOutput)
+            cout.setstate(ios_base::failbit);
         if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
         {
             printMeanTime(algorithms, actualV);
@@ -96,16 +125,16 @@ int main(int argc, char **argv)
         }
 
         Graph graph(vertexs);
-        for (int i = 0; i < edges; i++)
+        for (int i = 0; i < vertexs; i++)
         {
             cin >> x;
             cin >> y;
-            cin >> weight;
-
-            graph.createLigation(x, y, weight);
+            vertex_set.push_back(make_pair(x, y));
         }
 
-        // graph.print();
+        createCompleteGraph(graph, vertex_set);
+
+        //graph.print();
 
         for (const auto &algorithm : algorithms)
         {
@@ -115,10 +144,11 @@ int main(int argc, char **argv)
             {
                 algorithm->setGraph(graph);
                 algorithm->runAndCountTime();
-                if (!csvOutput) cout << "----------------" << endl;
+                if (!csvOutput)
+                    cout << "----------------" << endl;
             }
         }
     }
     printMeanTime(algorithms, actualV);
-    #endif
+#endif
 }
