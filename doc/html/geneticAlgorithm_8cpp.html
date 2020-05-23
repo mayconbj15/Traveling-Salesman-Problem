@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Travelling_Salesman_Algorithms: Referência ao ficheiro src/algorithms/geneticAlgorithm.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Travelling_Salesman_Algorithms
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_e6df591b0639d4c4807ef64d058833e2.html">algorithms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro geneticAlgorithm.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="constants_8h_source.html">../constants.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="graph_8h_source.html">../graph.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="geneticAlgorithm_8h_source.html">geneticAlgorithm.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para geneticAlgorithm.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="geneticAlgorithm_8cpp__incl.png" border="0" usemap="#src_2algorithms_2geneticAlgorithm_8cpp" alt=""/></div>
+<map name="src_2algorithms_2geneticAlgorithm_8cpp" id="src_2algorithms_2geneticAlgorithm_8cpp">
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:afd03fec440ff4408e5f2dada499d03e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geneticAlgorithm_8cpp.html#afd03fec440ff4408e5f2dada499d03e8">createMutationIndexes</a> (int &amp;mutationIndex0, int &amp;mutationIndex1, int numVertices)</td></tr>
+<tr class="memdesc:afd03fec440ff4408e5f2dada499d03e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria os índices onde o indivíduo será mutado.  <a href="#afd03fec440ff4408e5f2dada499d03e8">Mais...</a><br /></td></tr>
+<tr class="separator:afd03fec440ff4408e5f2dada499d03e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8c49f9e613eac4e5ef9ad428731611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geneticAlgorithm_8cpp.html#a9d8c49f9e613eac4e5ef9ad428731611">mutate</a> (int *newPath, int mutationIndex0, int mutationIndex1)</td></tr>
+<tr class="memdesc:a9d8c49f9e613eac4e5ef9ad428731611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muta um indivíduo trocando dois vértices de lugar.  <a href="#a9d8c49f9e613eac4e5ef9ad428731611">Mais...</a><br /></td></tr>
+<tr class="separator:a9d8c49f9e613eac4e5ef9ad428731611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="afd03fec440ff4408e5f2dada499d03e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd03fec440ff4408e5f2dada499d03e8">&#9670;&nbsp;</a></span>createMutationIndexes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void createMutationIndexes </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>mutationIndex0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>mutationIndex1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numVertices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cria os índices onde o indivíduo será mutado. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mutationIndex0</td><td>Referência para a variável que guardará o primeiro índice. </td></tr>
+    <tr><td class="paramname">mutationIndex1</td><td>Referência para a variável que guardará o segundo índice. </td></tr>
+    <tr><td class="paramname">numVertices</td><td>Número de vértices do grafo. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d8c49f9e613eac4e5ef9ad428731611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8c49f9e613eac4e5ef9ad428731611">&#9670;&nbsp;</a></span>mutate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mutate </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>newPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mutationIndex0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mutationIndex1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Muta um indivíduo trocando dois vértices de lugar. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newPath</td><td>Ponteiro para o novo caminho desse indivíduo. </td></tr>
+    <tr><td class="paramname">mutationIndex0</td><td>Índice do primeiro vértice a ser trocado de lugar. </td></tr>
+    <tr><td class="paramname">mutationIndex1</td><td>Índice do segundo vértice a ser trocado de lugar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

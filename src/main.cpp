@@ -16,7 +16,7 @@
 #include "constants.h"
 #include "graph.h"
 
-typedef pair<int, int> vertice;
+typedef pair<int, int> Vertice;
 
 using namespace std;
 
@@ -33,7 +33,7 @@ template <typename Algorithm> double runAlgorithm(Graph &graph)
 }
 
 /**
- * Função para degub das soluções
+ * Função para debug das soluções
  */
 template <typename Algorithm> void debug()
 {
@@ -47,8 +47,9 @@ template <typename Algorithm> void debug()
     DynamicProgramming(graph).run();
 }
 
-/** Função que printa a média da execução de um determinado algoritmo para grafos com
- * V vértices
+/**
+ * Função que printa a média da execução de todos os algoritmos para
+ * grafos com actualV vértices
  */
 void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
 {
@@ -81,13 +82,13 @@ void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
  *
  * @return a distância entre os dois vértices
  */
-double distBetweenVertexs(vertice v1, vertice v2)
+double distBetweenVertexs(Vertice &v1, Vertice &v2)
 {
     return sqrt(pow((v2.first - v1.first), 2) + pow((v2.second - v1.second), 2));
 }
 
 /** Cria um grafo completo com n(n-1)/2 arestas */
-void createCompleteGraph(Graph &graph, vector<vertice> &vertexs_set)
+void createCompleteGraph(Graph &graph, vector<Vertice> &vertexs_set)
 {
     double distance;
     int vertexs = graph.getV();
@@ -114,7 +115,7 @@ int main(int argc, char **argv)
     debug<DynamicProgramming>();
 #else
     vector<unique_ptr<TSP>> algorithms;
-    vector<vertice> vertex_set;
+    vector<Vertice> vertex_set;
     readArgs(argc, argv, algorithms);
 
     srand(time(NULL));

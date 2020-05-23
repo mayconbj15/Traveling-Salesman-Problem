@@ -31,8 +31,11 @@ public:
 
     void mutateIndividual(Individual &individual, int numVertices, int numOfTries);
 
-    bool mutatePopulation(vector<Individual> &population, int mutationRate,
+    void mutatePopulation(vector<Individual> &population, int mutationRate,
                           int numVertices, Individual &bestPath);
+
+    bool createIndividual(int numVertices, int i, Individual &individual,
+                          vector<Individual> &population);
 
     void createRandomPopulation(vector<Individual> &population, int populationSize,
                                 int numVertices, Individual &bestPath);

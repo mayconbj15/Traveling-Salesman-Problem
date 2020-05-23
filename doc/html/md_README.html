@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Travelling_Salesman_Algorithms: Traveling-Salesman-Problem</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Travelling_Salesman_Algorithms
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Traveling-Salesman-Problem </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2>1) Introdução:</h2>
+<p>Em consonância com a expansão do mercado tecnológico, a complexidade dos problemas computacionais tem aumentado, o que implicou na busca de máquinas mais potentes para processá-los. Entretanto, tais recursos são limitados e por isso devem ser utilizados de maneira eficiente. Tendo em vista esta problemática e com o objetivo de destacar a importância do projeto e análise de algoritmos, o grupo propôs uma análise de quatro soluções distintas para um problema clássico da Ciência da Computação, o Problema do Caixeiro Viajante (Traveling Salesman Problem). Os algoritmos utilizados foram:</p>
+<ul>
+<li>Brute Force &gt;Gera permutações de todos os caminhos possíveis e verifica dentre eles qual forma um ciclo e dos que formam um ciclo qual tem a menor distância</li>
+<li>Branch and Bound &gt;Gera uma árvore com todos os caminhos testando todas as ramificações parciais e podando aquelas que já são maiores que a solução atual.</li>
+<li>Dynamic Programming</li>
+<li>Genetic Algorithm</li>
+</ul>
+<h2>2) Implementação:</h2>
+<h3>Descrição</h3>
+<p>Como o problema envolve naturalmente a estrutura de dados Grafo, todos os algoritmos a usam. Neste trabalho criamos uma classe <a class="el" href="classTSP.html">TSP</a> (Traveling Salesman Problem) que serve como uma classe abstrata e classe base para os outros algoritmos que também são representados por classes.</p>
+<h3>Detalhes de implementação</h3>
+<h4>Branch and Bound</h4>
+<p>Similar ao Brute Force, o Branch and Bound gera uma árvore de recursão com diversos caminhos para seguir. Entretanto, não gera todas as possibilidades para descobrir o melhor caminho, mas, a cada cidade que avança, o algoritmo compara se a soma das arestas passadas é maior que o melhor caminho atual. Caso o teste seja verdadeiro, o cálculo é abortado e o programa testa outro caminho na árvore de recursão descartando, assim, vários outros testes desnecessários.</p>
+<p>A função principal do algoritmo possui os seguintes parâmetros:</p><ul>
+<li><b>double **matriz</b>: ponteiro para a matriz de adjacência(grafo);</li>
+<li><b>double parcial</b>: tamanho do caminho parcial;</li>
+<li><b>int nivel</b>: nível atual da árvore de recursão;</li>
+<li><b>int *caminho_parcial</b>: ponteiro para vetor com os vértices do caminho atual na árvore de recursão;</li>
+<li><b>bool *visitados</b>: ponteiro para vetor que representa vértices visitados;</li>
+</ul>
+<p>O algoritmo começa inicializando os vetores <b>caminho_parcial</b> e <b>visitados</b>. Logo após, passamos todos os parâmetros para o método principal. Sendo que <b>parcial</b> é inicializado com <b>0</b> e o <b>nivel</b> se inicia com <b>1</b>. Assim, finalizadas as inicializações, podemos começar a analisar o método. A ideia é bastante simples. No início do método, é testado se o algoritmo chegou ao último nível da árvore de recursão. Caso seja verdadeiro, se houver caminho direto até a raiz, somamos este caminho ao caminho parcial e testamos se esta soma é menor que a menor distância anterior. Se este teste também for verdadeiro, o vetor com o melhor caminho é atualizado e o seu custo é armazenado para futuras comparações. Veja abaixo o trecho: </p><div class="fragment"><div class="line">if (nivel == vertices)                                  </div><div class="line">{                                               </div><div class="line">   if (matriz[nivelAnterior][caminhoParcial[0]] != UNDEFINED)           </div><div class="line">   {                                            </div><div class="line">      double resultadoAtual =                           </div><div class="line">         parcial + matriz[nivelAnterior][caminhoParcial[0]];        </div><div class="line">         if (resultadoAtual &lt; this→distance)                    </div><div class="line">         {                                      </div><div class="line">            atualizarMelhorCaminho(caminhoParcial);         </div><div class="line">            this-&gt;distance = resultadoAtual;                    </div><div class="line">         }                                      </div><div class="line">   }                                            </div><div class="line">}</div></div><!-- fragment --><p> Caso o algoritmo ainda não estiver no fim da árvore, o primeiro “if” será falso e, assim, cairemos no “eles”. Este bloco possui um “for” que passa por todos os vértices ainda não visitados. Em sua estrutura, temos uma chamada recursiva que é requisitada caso o custo do caminho parcial até o momento, <b>parcial</b>, seja menor que o custo do menor caminho atual. Porém, se esse teste for falso, ou seja, se o percorrido até este momento já é <b>maior</b> que o menor caminho armazenado, o teste falha e, portanto, descartamos computações desnecessárias.</p>
+<p>Veja o código abaixo: </p><div class="fragment"><div class="line">for (int x = 0; x &lt; vertices; x++)</div><div class="line">{</div><div class="line">   if (!visitados[x] &amp;&amp; matriz[nivelAnterior][x] != UNDEFINED)</div><div class="line">   {</div><div class="line">      parcial += matriz[nivelAnterior][x];</div><div class="line">      if (parcial &lt; this→distance)</div><div class="line">      {</div><div class="line">         caminhoParcial[nivel] = x;</div><div class="line">         visitados[x] = true;</div><div class="line">         branchAndBound(matriz, parcial, nivel + 1, caminhoParcial, visitados);</div><div class="line">      }</div><div class="line">      parcial -= matriz[nivelAnterior][x];</div><div class="line">      memset(visitados, false, vertices);</div><div class="line">      for (int y = 0; y &lt; nivel; y++)</div><div class="line">         visitados[caminhoParcial[y]] = true;</div><div class="line">   }</div><div class="line">}</div></div><!-- fragment --><h3>Formato de entrada e saída</h3>
+<p>o formato de entrada e saída de dados, bem como decisões tomadas relativas aos casos e detalhes de especificação que porventura estejam omissos no enunciado.</p>
+<h3>Ambiente computacional</h3>
+<table class="doxtable">
+<tr>
+<th>Sistema Operacional</th><th>Compilador </th><th>Editor de Código  </th></tr>
+<tr>
+<td>Windows/Linux </td><td>gcc ou g++ que suporte c++14</td><td>Visual Studio Code </td></tr>
+</table>
+<p>Para mais informações Linux/Mac:</p>
+<div class="fragment"><div class="line">{/run.sh}</div><div class="line"></div><div class="line">Para mais informações Windows, caso não tenha ativado a execução de scripts no PowerShell,</div><div class="line">abra-o e rode ```Set-ExecutionPolicy Bypass Process```.</div><div class="line"></div><div class="line">```./run.ps1 --hel</div></div><!-- fragment --><p>Rodando todos os algoritmos Linux/Mac:</p>
+<div class="fragment"><div class="line">{/run.sh}</div><div class="line"></div><div class="line">Rodando todos os algoritmos Windows:</div><div class="line"></div><div class="line">```./run.ps1 branch brute dynamic geneti</div></div><!-- fragment --><h2>3) Análise de Complexidade:</h2>
+<p>análise de complexidade do pior e do melhor caso de todas as funções do programa e também do programa principal. Essa análise pode ser feita de forma mais detalhada linha por linha, somando-se as complexidades ou de forma mais geral, explicando a complexidade da função como um todo. De qualquer forma, tem que ficar claro qual é a operação relevante e também as configurações de entrada que levam ao pior e ao melhor caso.</p>
+<h2>4) Testes:</h2>
+<p>descrever os testes realizados, mostrando a saída do programa além de eventuais análises e comparações que foram solicitadas no enunciado.</p>
+<p>Em todos os gráficos, o eixo x é o número de cidades e o eixo y é o tempo gasto em milisegundos.</p>
+<div class="image">
+<img src="https://i.imgur.com/O8PazIL.png" alt="travelling salesman problem, branch and bound, brute force, dynamic programming, genetic algorithm"/>
+</div>
+<div class="image">
+<img src="https://i.imgur.com/Ditn469.png" alt="travelling salesman problem, branch and bound, dynamic programming, genetic algorithm"/>
+</div>
+<div class="image">
+<img src="https://i.imgur.com/IRRMCS8.png" alt="travelling salesman problem, dynamic programming, genetic algorithm"/>
+</div>
+<h2>5) Conclusão:</h2>
+<p>O trabalho foi muito bom para o grupo. Pudemos melhorar nossas habilidades na programação de algoritmos e também melhorar o nosso raciocínio lógico.</p>
+<p>As principais dificuldades que tivemos foram nos algoritmos de Branch and Bound e Dynamic Programming. Porém, foi muito interessante tentar enxergar a sobreposição de problemas no algoritmo de Dynamic Programming. Além disso, pensar em como guardar os resultados dos subproblemas também foi bem interessante.</p>
+<h2>6) Bibliografia:</h2>
+<h4>Força Bruta</h4>
+<p><a href="https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/">https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/</a><br />
+ <a href="https://www2.cs.sfu.ca/CourseCentral/125/tjd/tsp_example.html">https://www2.cs.sfu.ca/CourseCentral/125/tjd/tsp_example.html</a></p>
+<h3>Branch and Bound</h3>
+<p><a href="https://www.geeksforgeeks.org/traveling-salesman-problem-using-branch-and-bound-2/">https://www.geeksforgeeks.org/traveling-salesman-problem-using-branch-and-bound-2/</a><br />
+ <a href="https://www.youtube.com/watch?v=1FEP_sNb62k">https://www.youtube.com/watch?v=1FEP_sNb62k</a><br />
+</p>
+<h4>Algoritmo Genético</h4>
+<p><a href="https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/">https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/</a></p>
+<h4>Programação Dinâmica</h4>
+<p><a href="https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/">https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/</a><br />
+ <a href="https://www.youtube.com/watch?v=Q4zHb-Swzro">https://www.youtube.com/watch?v=Q4zHb-Swzro</a><br />
+ <a href="https://www.youtube.com/watch?v=cY4HiiFHO1o">https://www.youtube.com/watch?v=cY4HiiFHO1o</a><br />
+ <a href="https://www.youtube.com/watch?v=udEe7Cv3DqU">https://www.youtube.com/watch?v=udEe7Cv3DqU</a><br />
+ <a href="https://www.youtube.com/watch?v=-JjA4BLQyqE">https://www.youtube.com/watch?v=-JjA4BLQyqE</a><br />
+ <a href="https://www.youtube.com/watch?v=JE0JE8ce1V0">https://www.youtube.com/watch?v=JE0JE8ce1V0</a></p>
+<h4>Gerais</h4>
+<p><a href="https://www.geeksforgeeks.org/measure-execution-time-with-high-precision-in-c-c/">https://www.geeksforgeeks.org/measure-execution-time-with-high-precision-in-c-c/</a><br />
+ <a href="https://www.ime.usp.br/~pf/analise_de_algoritmos/aulas/NPcompleto.html">https://www.ime.usp.br/~pf/analise_de_algoritmos/aulas/NPcompleto.html</a></p>
+<h2>7) Anexos:</h2>
+<h4>Repositório</h4>
+<p><a href="https://github.com/mayconbj15/Traveling-Salesman-Problem">https://github.com/mayconbj15/Traveling-Salesman-Problem</a> </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <time.h>
 
-#define N 15;
+#define N 15
 
 using namespace std;
 
@@ -22,7 +22,7 @@ void generateInput()
         int edges = (n * (n - 1)) / 2; // número de arestas de um vertice completo
 
         // gera N grafos de tamanho n
-        for (int graphs = 0; graphs < N graphs++)
+        for (int graphs = 0; graphs < N; graphs++)
         {
             cout << n << " " << edges << endl;
             // gera uma entrada de grafo aleatoria
