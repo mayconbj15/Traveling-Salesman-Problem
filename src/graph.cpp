@@ -11,6 +11,11 @@ using namespace std;
 
 Graph::Graph() {}
 
+/**
+ * Inicializa um novo grafo com V vértices
+ *
+ * @param V número de vértices do grafo
+ */
 Graph::Graph(int V)
 {
     this->V = V;
@@ -18,6 +23,9 @@ Graph::Graph(int V)
     initializeGraph();
 }
 
+/**
+ * Destrutor padrão da classe
+ */
 Graph::~Graph()
 {
     for (int i = 0; i < this->V; i++)
@@ -25,6 +33,9 @@ Graph::~Graph()
     delete[] graph;
 }
 
+/**
+ * Construtor que recebe um grafo já construído
+ */
 Graph::Graph(const Graph &other)
 {
     int numVertices = V = other.V;
@@ -38,7 +49,7 @@ Graph::Graph(const Graph &other)
 }
 
 /**
- * Inicializa um grafo com valores default
+ * Inicializa um grafo com valores padrões igual a -1
  */
 void Graph::initializeGraph()
 {
@@ -110,4 +121,8 @@ void Graph::newRandomGraph()
     }
 }
 
+/**
+ *
+ * Verifica se uma aresta que começa em x e termina em y já existe no Grafo
+ */
 bool Graph::edgeExist(int x, int y) { return graph[x][y] != UNDEFINED; }

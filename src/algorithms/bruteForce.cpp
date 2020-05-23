@@ -1,8 +1,3 @@
-/**
- * Classe que implementa o paradigma de Força Bruta para resolver o problema do
- * Caixeiro Viajante
- */
-
 #include <algorithm>
 #include <string.h>
 
@@ -16,6 +11,9 @@ using namespace std;
  * Construtor vazio da classe BruteForce
  */
 BruteForce::BruteForce() : TSP("Brute Force") {}
+/**
+ * Construtor da classe Brute Force que recebe um grafo para as computações
+ */
 BruteForce::BruteForce(Graph &graph) : TSP(graph, "Brute Force") {}
 BruteForce::BruteForce(Graph &&graph) : TSP(graph, "Brute Force") {}
 

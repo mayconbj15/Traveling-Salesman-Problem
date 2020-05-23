@@ -20,35 +20,36 @@ typedef pair<int, int> vertice;
 
 using namespace std;
 
+/**
+ * Função que executa um determinado algoritmo para o problema do Caixeiro Viajante e
+ * mostra o resultado e suas estatisticas
+ *
+ * @param Graph o grafo que irá ser executado o Caixeiro Viajante
+ */
 template <typename Algorithm> double runAlgorithm(Graph &graph)
 {
     TSP &&algorithm = Algorithm(graph);
     return algorithm.runAndCountTime();
 }
 
+/**
+ * Função para degub das soluções
+ */
 template <typename Algorithm> void debug()
 {
-    Graph graph(4);
-
-    graph.createLigation(0, 1, 3);
-    graph.createLigation(0, 2, 1);
-    graph.createLigation(0, 3, 2);
-    graph.createLigation(1, 2, 7);
-    graph.createLigation(1, 3, 4);
-    graph.createLigation(2, 3, 5);
-
-    /*
     Graph graph(10);
 
     graph.newRandomGraph();
-    */
 
     graph.print();
 
     runAlgorithm<Algorithm>(graph);
-    // DynamicProgramming(graph).run();
+    DynamicProgramming(graph).run();
 }
 
+/** Função que printa a média da execução de um determinado algoritmo para grafos com
+ * V vértices
+ */
 void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
 {
     for (auto &&algorithm : algorithms)
@@ -72,11 +73,20 @@ void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
     if (csvOutput) cout.setstate(ios_base::failbit);
 }
 
+/**
+ * Função que calcula a distância entre dois vértices
+ *
+ * @param v1 vértice inicial
+ * @param v2 vértice final
+ *
+ * @return a distância entre os dois vértices
+ */
 double distBetweenVertexs(vertice v1, vertice v2)
 {
     return sqrt(pow((v2.first - v1.first), 2) + pow((v2.second - v1.second), 2));
 }
 
+/** Cria um grafo completo com n(n-1)/2 arestas */
 void createCompleteGraph(Graph &graph, vector<vertice> &vertexs_set)
 {
     double distance;
@@ -94,6 +104,10 @@ void createCompleteGraph(Graph &graph, vector<vertice> &vertexs_set)
 
 #define DEBUG 0
 
+/**
+ * Função principal que recebe os parâmetros de qual algoritmo será executado,
+ * lê as entradas e realiza as computações
+ */
 int main(int argc, char **argv)
 {
 #if DEBUG

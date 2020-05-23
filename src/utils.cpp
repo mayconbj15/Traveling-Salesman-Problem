@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/**
+ * Função que gera um formato de entrada de Grafo em que as linhas representam
+ * arestas
+ */
 void generateInput()
 {
     int n = 3;
@@ -38,6 +42,10 @@ void generateInput()
     }
 }
 
+/**
+ * Função que gera um formato de entrada de Grafo em que as linhas representam
+ * vértices
+ */
 void generateInputV2()
 {
     int numero_de_casos = 1000;
