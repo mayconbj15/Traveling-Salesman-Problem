@@ -12,6 +12,11 @@ BranchAndBound::BranchAndBound() : TSP("Branch and Bound") {}
 BranchAndBound::BranchAndBound(Graph &graph) : TSP(graph, "Branch and Bound") {}
 BranchAndBound::BranchAndBound(Graph &&graph) : TSP(graph, "Branch and Bound") {}
 
+/**
+ * @brief Atualiza vetor com o melhor caminho.
+ * 
+ * @param caminhoParcial - Vetor auxiliar contendo o melhor caminho atual.
+ */
 void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
 {
     int vertices = this->graph.getV();
@@ -19,6 +24,15 @@ void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
         this->cities[x] = caminhoParcial[x];
 }
 
+/**
+ * @brief Encontra melhor caminho utilizando o algoritmo Branch and Bound
+ * 
+ * @param matriz - Matriz de adjacência (grafo)
+ * @param parcial - Custo do caminho parcial
+ * @param nivel - Nivel atual da árvore de recursão
+ * @param caminhoParcial - Sequência de cidades parcorrida até o momento
+ * @param visitados - Vetor com os vértices visitados
+ */
 void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
                                     int *caminhoParcial, bool *visitados)
 {
