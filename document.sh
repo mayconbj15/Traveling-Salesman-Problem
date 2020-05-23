@@ -12,7 +12,8 @@ EXTRACT_ALL = YES
 OUTPUT_LANGUAGE = Portuguese
 OUTPUT_DIRECTORY = doc
 GENERATE_HTML = YES
-GENERATE_LATEX = NO" > doxyconfig.txt
+GENERATE_LATEX = NO
+HAVE_DOT = YES" > doxyconfig.txt
 
 # Gera a documentação
 doxygen doxyconfig.txt
