@@ -1,34 +1,32 @@
-#include <iostream>
-#include <time.h>
 #include <algorithm>
-#include <vector>
-#include <string.h>
+#include <iostream>
 #include <locale>
-#include <memory>
 #include <math.h>
+#include <memory>
+#include <string.h>
+#include <time.h>
+#include <vector>
 
-#include "graph.h"
 #include "TSP.h"
-#include "constants.h"
-#include "arguments.h"
 #include "algorithms/branchAndBound.h"
 #include "algorithms/bruteForce.h"
 #include "algorithms/dynamicProgramming.h"
 #include "algorithms/geneticAlgorithm.h"
+#include "arguments.h"
+#include "constants.h"
+#include "graph.h"
 
 typedef pair<int, int> vertice;
 
 using namespace std;
 
-template <typename Algorithm>
-double runAlgorithm(Graph &graph)
+template <typename Algorithm> double runAlgorithm(Graph &graph)
 {
     TSP &&algorithm = Algorithm(graph);
     return algorithm.runAndCountTime();
 }
 
-template <typename Algorithm>
-void debug()
+template <typename Algorithm> void debug()
 {
     Graph graph(4);
 
@@ -57,8 +55,7 @@ void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
     {
         if (!csvOutput)
         {
-            cout << "MEDIA " << algorithm->getName()
-                 << " n = " << actualV << ": "
+            cout << "MEDIA " << algorithm->getName() << " n = " << actualV << ": "
                  << algorithm->getTotalTime() / NUMBEROFGRAPHS << " ms" << endl;
         }
         else
@@ -70,11 +67,9 @@ void printMeanTime(vector<unique_ptr<TSP>> &algorithms, int actualV)
 
         algorithm->setTotalTime(0);
     }
-    if (csvOutput)
-        cout.clear();
+    if (csvOutput) cout.clear();
     cout << endl;
-    if (csvOutput)
-        cout.setstate(ios_base::failbit);
+    if (csvOutput) cout.setstate(ios_base::failbit);
 }
 
 double distBetweenVertexs(vertice v1, vertice v2)
@@ -116,9 +111,10 @@ int main(int argc, char **argv)
 
     while (scanf("%d", &vertexs) != EOF)
     {
-        if (csvOutput)
-            cout.setstate(ios_base::failbit);
-        if (actualV != vertexs) //calcula a média de tempo dos grafos calculados de V vertices
+        if (csvOutput) cout.setstate(ios_base::failbit);
+
+        // calcula a média de tempo dos grafos calculados de V vertices
+        if (actualV != vertexs)
         {
             printMeanTime(algorithms, actualV);
             actualV = vertexs;
@@ -134,18 +130,18 @@ int main(int argc, char **argv)
 
         createCompleteGraph(graph, vertex_set);
 
-        //graph.print();
+        // graph.print();
 
         for (const auto &algorithm : algorithms)
         {
             // Just run the code if we are using less than 15 cities or if
             // we are not using the brute force algorithm
-            if (!(actualV == 15 && algorithm->getName().find("rute") != string::npos))
+            if (!(actualV == 15 &&
+                  algorithm->getName().find("rute") != string::npos))
             {
                 algorithm->setGraph(graph);
                 algorithm->runAndCountTime();
-                if (!csvOutput)
-                    cout << "----------------" << endl;
+                if (!csvOutput) cout << "----------------" << endl;
             }
         }
     }

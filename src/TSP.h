@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <memory>
+#include <string>
 
 #include "graph.h"
 
@@ -49,5 +49,5 @@ public:
     void printClock();
     double runAndCountTime();
 
-    void printArray(int *array, int n);
+    void printPath(int *array, int n);
 };

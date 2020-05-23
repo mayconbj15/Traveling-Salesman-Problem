@@ -1,11 +1,11 @@
 #pragma once
 
-#include <iostream>
 #include <algorithm>
-#include <vector>
-#include <string.h>
+#include <iostream>
 #include <locale>
 #include <memory>
+#include <string.h>
+#include <vector>
 
 #include "TSP.h"
 #include "algorithms/branchAndBound.h"
@@ -24,9 +24,8 @@ int readAlgorithms(int argc, char **argv, int i, vector<unique_ptr<TSP>> &algori
     string dynamic = "dynamicprogramming";
     string genetic = "geneticalgorithm";
     string arg = string(argv[i]);
-    transform(arg.begin(), arg.end(), arg.begin(), [](char c){
-        return tolower(c);
-    });
+    transform(arg.begin(), arg.end(), arg.begin(),
+              [](char c) { return tolower(c); });
 
     if (branch.find(arg) != string::npos)
         algorithms.push_back(make_unique<BranchAndBound>());
@@ -50,16 +49,20 @@ void showHelp()
     printf("USAGE: main.exe [-h|--help|--csv] [branch|brute|dynamic|genetic]...\n");
     puts("");
     printf("EXAMPLE: main.exe -h\n");
-    printf("EXAMPLE: main.exe branch genetic # run 'branch and bound' and 'genetic' approaches\n");
-    printf("EXAMPLE: main.exe branch genetic --csv # run algorithms and print the mean time in CSV format\n");
+    printf("EXAMPLE: main.exe branch genetic # run 'branch and bound' and 'genetic' "
+           "approaches\n");
+    printf("EXAMPLE: main.exe branch genetic --csv # run algorithms and print the "
+           "mean time in CSV format\n");
 }
 
 void readArgs(int argc, char **argv, vector<unique_ptr<TSP>> &algorithms)
 {
     for (size_t i = 1; i < argc; i++)
     {
-        if (argv[i][0] != '-') i = readAlgorithms(argc, argv, i, algorithms);
-        else if (strcmp(argv[i], "--csv") == 0) csvOutput = 1;
+        if (argv[i][0] != '-')
+            i = readAlgorithms(argc, argv, i, algorithms);
+        else if (strcmp(argv[i], "--csv") == 0)
+            csvOutput = 1;
         else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
         {
             showHelp();

@@ -1,17 +1,17 @@
-#include <iostream>
 #include <algorithm>
 #include <bits/stdc++.h>
+#include <iostream>
 #include <stdint.h>
 #include <stdlib.h>
 #include <time.h>
 
-#include <string>
 #include <iostream>
 #include <memory>
+#include <string>
 
+#include "TSP.h"
 #include "constants.h"
 #include "graph.h"
-#include "TSP.h"
 
 using namespace std;
 
@@ -19,15 +19,15 @@ TSP::TSP() : TSP("unknown") {}
 
 TSP::TSP(string name) : TSP(Graph(0), name) {}
 
-TSP::TSP(Graph &graph, string name) : graph(graph),
-                                     cities(new int[graph.getV()]),
-                                     distance(MAX),
-                                     name(name) {}
+TSP::TSP(Graph &graph, string name)
+    : graph(graph), cities(new int[graph.getV()]), distance(MAX), name(name)
+{
+}
 
-TSP::TSP(Graph &&graph, string name) : graph(graph),
-                                     cities(new int[graph.getV()]),
-                                     distance(MAX),
-                                     name(name) {}
+TSP::TSP(Graph &&graph, string name)
+    : graph(graph), cities(new int[graph.getV()]), distance(MAX), name(name)
+{
+}
 
 void TSP::setGraph(Graph &graph)
 {
@@ -43,8 +43,8 @@ double TSP::getTotalTime() { return totalTime; }
 
 void TSP::printClock()
 {
-    cout << "Time elapsed for " << name << ": " << fixed
-         << (int)time << " ms " << endl;
+    cout << "Time elapsed for " << name << ": " << fixed << (int)time << " ms "
+         << endl;
 }
 
 double TSP::runAndCountTime()
@@ -68,26 +68,26 @@ double TSP::runAndCountTime()
     return time;
 }
 
-void TSP::printArray(int *array, int n)
+void TSP::printPath(int *array, int n)
 {
     for (int i = 0; i < n; i++)
         cout << array[i] << " ";
-    cout << endl;
+    cout << array[0] << endl;
 }
 
 void TSP::showResult()
 {
-    cout << "Shortest distance: " << (int) distance << endl;
+    cout << "Shortest distance: " << (int)distance << endl;
     cout << "Shortest path:" << endl;
-    printArray(cities.get(), graph.getV() + 1);
+    printPath(cities.get(), graph.getV());
 }
 
 /**
- * Função que percorre um determinado conjunto de vertices dado em um array de inteiro
- * e faz a soma de seus pesos
- * 
+ * Função que percorre um determinado conjunto de vertices dado em um array de
+ * inteiro e faz a soma de seus pesos
+ *
  * @param array array de inteiro com os vértices a serem visitados
- * 
+ *
  * @return Custo ao seguir essa sequência de vértices.
  */
 double TSP::sumPath(int *array, int arraySize)
@@ -110,14 +110,11 @@ double TSP::sumPath(int *array, int arraySize)
 }
 
 /**
- * Função que percorre um determinado conjunto de vertices dado em um array de inteiro
- * e faz a soma de seus pesos
- * 
+ * Função que percorre um determinado conjunto de vertices dado em um array de
+ * inteiro e faz a soma de seus pesos
+ *
  * @param array array de inteiro com os vértices a serem visitados
- * 
+ *
  * @return Custo ao seguir essa sequência de vértices.
  */
-double TSP::sumPath(int *array)
-{
-    return sumPath(array, this->graph.getV() + 1);
-}
+double TSP::sumPath(int *array) { return sumPath(array, this->graph.getV() + 1); }

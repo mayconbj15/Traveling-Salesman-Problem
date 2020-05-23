@@ -1,9 +1,9 @@
 #include <algorithm>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
-#include "../graph.h"
 #include "../constants.h"
+#include "../graph.h"
 #include "branchAndBound.h"
 
 using namespace std;
@@ -19,16 +19,12 @@ void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
         this->cities[x] = caminhoParcial[x];
 }
 
-void BranchAndBound::branchAndBound(
-    double** matriz, 
-    double parcial, 
-    int nivel, 
-    int *caminhoParcial, 
-    bool *visitados)
+void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
+                                    int *caminhoParcial, bool *visitados)
 {
-    int vertices = this->graph.getV();    
+    int vertices = this->graph.getV();
     int nivelAnterior = caminhoParcial[nivel - 1];
-    
+
     // Se chegar no fim da árvore
     if (nivel == vertices)
     {
@@ -36,7 +32,8 @@ void BranchAndBound::branchAndBound(
         // o vértice inicial
         if (matriz[nivelAnterior][caminhoParcial[0]] != UNDEFINED)
         {
-            double resultadoAtual = parcial + matriz[nivelAnterior][caminhoParcial[0]];
+            double resultadoAtual =
+                parcial + matriz[nivelAnterior][caminhoParcial[0]];
 
             // Se o caminho percorrido até o fim da árvore é
             // menor que o menor atual, então podemos atribuí-lo
@@ -59,18 +56,19 @@ void BranchAndBound::branchAndBound(
             if (!visitados[x] && matriz[nivelAnterior][x] != UNDEFINED)
             {
                 parcial += matriz[nivelAnterior][x]; // salvar caminho anterior
-                            
+
                 // Se o caminho parcial já é maior que o menor
                 // caminho atual, então podemos descartar esta computação.
                 if (parcial < this->distance)
                 {
                     caminhoParcial[nivel] = x;
                     visitados[x] = true;
-                    branchAndBound(matriz, parcial, nivel + 1, caminhoParcial, visitados);
+                    branchAndBound(matriz, parcial, nivel + 1, caminhoParcial,
+                                   visitados);
                 }
 
                 parcial -= matriz[nivelAnterior][x];
-                memset(visitados, false, vertices);                
+                memset(visitados, false, vertices);
                 for (int y = 0; y < nivel; y++)
                     visitados[caminhoParcial[y]] = true;
             }
@@ -84,14 +82,14 @@ void BranchAndBound::run()
     int caminhoParcial[vertices + 1];
     bool visitados[vertices];
     double **matriz = this->graph.getGraph();
-    
+
     this->distance = MAX;
 
     memset(caminhoParcial, -1, vertices + 1);
-    memset(visitados, false, vertices);    
-    
+    memset(visitados, false, vertices);
+
     visitados[0] = true;
     caminhoParcial[0] = 0;
 
-    branchAndBound(matriz, 0, 1, caminhoParcial, visitados);  
+    branchAndBound(matriz, 0, 1, caminhoParcial, visitados);
 }

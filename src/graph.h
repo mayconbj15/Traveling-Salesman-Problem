@@ -28,7 +28,7 @@ public:
         if (this != &other)
         {
             int numVertices = V = other.V;
-            graph = new double*[numVertices];
+            graph = new double *[numVertices];
 
             for (size_t i = 0; i < numVertices; i++)
             {
