@@ -2,6 +2,9 @@
 
 #include <string.h>
 
+/**
+ * Classe que implementa um estrutura de Grafo usando uma matriz de adjacência
+ */
 class Graph
 {
 private:
