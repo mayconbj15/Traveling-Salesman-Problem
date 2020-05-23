@@ -1,5 +1,7 @@
 #doxygen -g doxyconfig.txt
 
+Remove-Item -Recurse -Force doc
+
 # Gera o arquivo das configurações da documentação
 echo "DOXYFILE_ENCODING = UTF-8
 PROJECT_NAME = Travelling_Salesman_Algorithms
