@@ -1,0 +1,7 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="node1" href="$classTSP.html" title="TSP" alt="" coords="5,81,53,108"/>
+<area shape="rect" id="node2" href="$classBranchAndBound.html" title="BranchAndBound" alt="" coords="115,5,238,32"/>
+<area shape="rect" id="node3" href="$classBruteForce.html" title="BruteForce" alt="" coords="133,56,220,83"/>
+<area shape="rect" id="node4" href="$classDynamicProgramming.html" title="DynamicProgramming" alt="" coords="101,107,252,133"/>
+<area shape="rect" id="node5" href="$classGeneticAlgorithm.html" title="GeneticAlgorithm" alt="" coords="115,157,238,184"/>
+</map>

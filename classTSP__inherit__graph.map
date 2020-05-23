@@ -1,0 +1,6 @@
+<map id="TSP" name="TSP">
+<area shape="rect" id="node2" href="$classBranchAndBound.html" title="BranchAndBound" alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node3" href="$classBruteForce.html" title="BruteForce" alt="" coords="153,80,239,107"/>
+<area shape="rect" id="node4" href="$classDynamicProgramming.html" title="DynamicProgramming" alt="" coords="263,80,414,107"/>
+<area shape="rect" id="node5" href="$classGeneticAlgorithm.html" title="GeneticAlgorithm" alt="" coords="439,80,561,107"/>
+</map>
