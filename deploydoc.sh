@@ -1,3 +1,5 @@
+#!/bin/bash
+
 repo_link=$(git remote -v | grep origin | cut -d' ' -f1 | cut -f2 | head -n1)
 
 ./document.sh
