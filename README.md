@@ -26,22 +26,69 @@ Neste trabalho criamos uma classe TSP (Traveling Salesman Problem) que serve com
 abstrata e classe base para os outros algoritmos que também são representados por classes.
 
 ### Detalhes de implementação
-Métodos principais por classe:
-- TSP
-    - sumPath()
 
-- BranchAndBound
-    - sumPath()
-    - atualizarMelhorCaminho(int *caminhoParcial)
+#### Branch and Bound
+Similar ao Brute Force, o Branch and Bound gera uma árvore de recursão com diversos caminhos para seguir. Entretanto, não 
+gera todas as possibilidades para descobrir o melhor caminho, mas, a cada cidade que avança, o algoritmo compara se a soma 
+das arestas passadas é maior que o melhor caminho atual. Caso o teste seja verdadeiro, o cálculo é abortado e o programa 
+testa outro caminho na árvore de recursão descartando, assim, vários outros testes desnecessários.
 
-- BruteForce
-    - sumPath()
+A função principal do algoritmo possui os seguintes parâmetros:
+- __double **matriz__: ponteiro para a matriz de adjacência(grafo);
+- __double parcial__: tamanho do caminho parcial;
+- __int nivel__: nível atual da árvore de recursão;
+- __int *caminho_parcial__: ponteiro para vetor com os vértices do caminho atual na árvore de recursão;
+- __bool *visitados__: ponteiro para vetor que representa vértices visitados;
 
-- DynamicProgramming
-    - sumPath()
+O algoritmo começa inicializando os vetores __caminho_parcial__ e __visitados__. Logo após, passamos todos os parâmetros para 
+o método principal. Sendo que __parcial__ é inicializado com __0__ e o __nivel__ se inicia com __1__. Assim, finalizadas as 
+inicializações, podemos começar a analisar o método.
+A ideia é bastante simples. No início do método, é testado se o algoritmo chegou ao último nível da árvore de recursão. Caso 
+seja verdadeiro, se houver caminho direto até a raiz, somamos este caminho ao caminho parcial e testamos se esta soma é menor 
+que a menor distância anterior. Se este teste também for verdadeiro, o vetor com o melhor caminho é atualizado e o seu custo 
+é armazenado para futuras comparações. Veja abaixo o trecho:
+```
+if (nivel == vertices)									
+{												
+   if (matriz[nivelAnterior][caminhoParcial[0]] != UNDEFINED)			
+   {											
+      double resultadoAtual =							
+         parcial + matriz[nivelAnterior][caminhoParcial[0]];		
+         if (resultadoAtual < this→distance)					
+         {										
+            atualizarMelhorCaminho(caminhoParcial);			
+            this->distance = resultadoAtual;					
+         }										
+   }											
+}
+```
+Caso o algoritmo ainda não estiver no fim da árvore, o primeiro “if” será falso e, assim, cairemos no “eles”. Este bloco 
+possui um “for” que passa por todos os vértices ainda não visitados. Em sua estrutura, temos uma chamada recursiva que é 
+requisitada caso o custo do caminho parcial até o momento, __parcial__, seja menor que o custo do menor caminho atual. Porém, 
+se esse teste for falso, ou seja, se o percorrido até este momento já é __maior__ que o menor caminho armazenado, o teste 
+falha e, portanto, descartamos computações desnecessárias. 
 
-- GeneticAlgorithm
-    - sumPath()
+Veja o código abaixo:
+```
+for (int x = 0; x < vertices; x++)
+{
+   if (!visitados[x] && matriz[nivelAnterior][x] != UNDEFINED)
+   {
+      parcial += matriz[nivelAnterior][x];
+      if (parcial < this→distance)
+      {
+         caminhoParcial[nivel] = x;
+         visitados[x] = true;
+         branchAndBound(matriz, parcial, nivel + 1, caminhoParcial, visitados);
+      }
+      parcial -= matriz[nivelAnterior][x];
+      memset(visitados, false, vertices);
+      for (int y = 0; y < nivel; y++)
+         visitados[caminhoParcial[y]] = true;
+   }
+}
+```
+
 
 ### Formato de entrada e saída
 
