@@ -6,7 +6,7 @@ PROJECT_NAME = Travelling Salesman Problem Algorithms
 RECURSIVE = YES
 EXTRACT_ALL = YES
 OUTPUT_LANGUAGE = Portuguese
-OUTPUT_DIRECTORY = doc
+OUTPUT_DIRECTORY = ../docs
 GENERATE_HTML = YES
 GENERATE_LATEX = NO" | Out-File -Encoding "UTF8" doxyconfig.txt
 # Caso você esteja num sistema unix, substitua a linha a cima por:

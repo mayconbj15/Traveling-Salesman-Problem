@@ -1,3 +1,8 @@
+/**
+ * Classe que implementa o paradigma de Força Bruta para resolver o problema do
+ * Caixeiro Viajante
+ */
+
 #include <algorithm>
 #include <string.h>
 
