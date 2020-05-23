@@ -155,10 +155,8 @@ void DynamicProgramming::run()
  * @param cities Pointer to an array to store the sequence of cities of the best
  * solution.
  */
-void getSolution( // Down the tree getting the best path after dynamic
-                  // programming
-    vector<vector<int>> &memoTable, int citiesSubset, int endingCity, int numCities,
-    int *cities)
+void getSolution(vector<vector<int>> &memoTable, int citiesSubset, int endingCity,
+                 int numCities, int *cities)
 {
     int cost, bestCost = MAX, subset, bestSubset, bestCity, n = 0;
     int newSubset = removeCity(endingCity, citiesSubset);
