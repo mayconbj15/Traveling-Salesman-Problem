@@ -24,24 +24,16 @@ public:
     GeneticAlgorithm();
     GeneticAlgorithm(Graph &graph);
     GeneticAlgorithm(Graph &&graph);
-    
+
     void run();
 
     void createRandomPath(int numVertices, vector<int> &cities);
 
     void mutateIndividual(Individual &individual, int numVertices, int numOfTries);
 
-    bool mutatePopulation(
-        vector<Individual> &population,
-        int mutationRate,
-        int numVertices,
-        Individual &bestPath
-    );
+    bool mutatePopulation(vector<Individual> &population, int mutationRate,
+                          int numVertices, Individual &bestPath);
 
-    void createRandomPopulation(
-        vector<Individual> &population,
-        int populationSize,
-        int numVertices,
-        Individual &bestPath
-    );
+    void createRandomPopulation(vector<Individual> &population, int populationSize,
+                                int numVertices, Individual &bestPath);
 };

@@ -1,19 +1,21 @@
 #include <algorithm>
-#include <vector>
-#include <memory>
 #include <iostream>
+#include <memory>
+#include <vector>
 
 #include <string.h>
 
-#include "../graph.h"
 #include "../constants.h"
+#include "../graph.h"
 #include "geneticAlgorithm.h"
 
 using namespace std;
 
 GeneticAlgorithm::GeneticAlgorithm() : TSP("Genetic Algorithm") {}
 GeneticAlgorithm::GeneticAlgorithm(Graph &graph) : TSP(graph, "Genetic Algorithm") {}
-GeneticAlgorithm::GeneticAlgorithm(Graph &&graph) : TSP(graph, "Genetic Algorithm") {}
+GeneticAlgorithm::GeneticAlgorithm(Graph &&graph) : TSP(graph, "Genetic Algorithm")
+{
+}
 
 void createMutationIndexes(int &mutationIndex0, int &mutationIndex1, int numVertices)
 {
@@ -30,8 +32,8 @@ void mutate(int *newPath, int mutationIndex0, int mutationIndex1)
     newPath[mutationIndex1] = aux;
 }
 
-void GeneticAlgorithm::mutateIndividual(
-    Individual &individual, int numVertices, int numOfTries = 3)
+void GeneticAlgorithm::mutateIndividual(Individual &individual, int numVertices,
+                                        int numOfTries = 3)
 {
     if (numOfTries > 0)
     {
@@ -53,12 +55,9 @@ void GeneticAlgorithm::mutateIndividual(
     }
 }
 
-bool GeneticAlgorithm::mutatePopulation(
-    vector<Individual> &population,
-    int mutationRate,
-    int numVertices,
-    Individual &bestPath
-)
+bool GeneticAlgorithm::mutatePopulation(vector<Individual> &population,
+                                        int mutationRate, int numVertices,
+                                        Individual &bestPath)
 {
     for (auto &&individual : population)
         if (rand() % 100 < mutationRate)
@@ -81,13 +80,13 @@ void GeneticAlgorithm::createRandomPath(int numVertices, vector<int> &cities)
 
     for (size_t i = 1; i < numVertices; i++, citiesEnd++)
     {
-        do {
+        do
+        {
             city = rand() % (numVertices - 1) + 1;
-        } while (
-            !graph.edgeExist(cities[i - 1], city) || // The edge need to exist
+        } while ( // The edge need to exist
+            !graph.edgeExist(cities[i - 1], city) ||
             // And the city can't already exist in the path
-            find(cities.begin() + 1, citiesEnd, city) != citiesEnd
-        );
+            find(cities.begin() + 1, citiesEnd, city) != citiesEnd);
 
         cities[i] = city;
     }
@@ -98,32 +97,28 @@ bool pathsAreEqual(vector<int> &path0, vector<int> &path1, int pathSize)
     return memcmp(path0.data(), path1.data(), sizeof(int) * pathSize) == 0;
 }
 
-void GeneticAlgorithm::createRandomPopulation(
-    vector<Individual> &population,
-    int populationSize,
-    int numVertices,
-    Individual &bestPath
-)
+void GeneticAlgorithm::createRandomPopulation(vector<Individual> &population,
+                                              int populationSize, int numVertices,
+                                              Individual &bestPath)
 {
     vector<Individual>::iterator individualPtr;
 
     for (size_t i = 0; i < populationSize; i++)
     {
         Individual &individual = population[i];
-        do {
+        do
+        {
             createRandomPath(numVertices, individual.cities);
 
-            // Check if createRandomPath has generated a path that already exists
-            // in the population
-            individualPtr = find_if(population.begin(), population.begin() + i,
-                [&individual, numVertices](Individual& currentIndividual){
-                    return pathsAreEqual(
-                        individual.cities,
-                        currentIndividual.cities,
-                        numVertices
-                    );
-                }
-            );
+            // Check if createRandomPath has
+            // generated a path that already
+            // exists in the population
+            individualPtr = find_if(
+                population.begin(), population.begin() + i,
+                [&individual, numVertices](Individual &currentIndividual) {
+                    return pathsAreEqual(individual.cities, currentIndividual.cities,
+                                         numVertices);
+                });
 
             if (individualPtr == population.begin() + i) break;
         } while (true);
@@ -139,7 +134,8 @@ void GeneticAlgorithm::createRandomPopulation(
 }
 
 /**
- * Based on https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
+ * Based on
+ * https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/
  */
 void GeneticAlgorithm::run()
 {

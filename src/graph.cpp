@@ -20,14 +20,15 @@ Graph::Graph(int V)
 
 Graph::~Graph()
 {
-    for (int i = 0; i < this->V; i++) delete[] graph[i];
+    for (int i = 0; i < this->V; i++)
+        delete[] graph[i];
     delete[] graph;
 }
 
 Graph::Graph(const Graph &other)
 {
     int numVertices = V = other.V;
-    graph = new double*[numVertices];
+    graph = new double *[numVertices];
 
     for (size_t i = 0; i < numVertices; i++)
     {
@@ -54,8 +55,9 @@ void Graph::initializeGraph()
 }
 
 /**
- * Função que cria uma aresta bidirecional entre dois vertices com um determinado peso
- * 
+ * Função que cria uma aresta bidirecional entre dois vertices com um determinado
+ * peso
+ *
  * @param x vertice inicial
  * @param y vertice final
  * @param weight peso da aresta
@@ -68,18 +70,12 @@ void Graph::createLigation(int x, int y, double weight)
 
 /**
  * Função que retorna a quantidade de vertices do grafo
- * 
+ *
  * @return quantidade de vertices do grafo
  */
-int Graph::getV()
-{
-    return this->V;
-}
+int Graph::getV() { return this->V; }
 
-double **Graph::getGraph()
-{
-    return this->graph;
-}
+double **Graph::getGraph() { return this->graph; }
 
 /**
  * Função para printar o grafo
@@ -91,7 +87,7 @@ void Graph::print()
     {
         for (int j = 0; j < this->V; j++)
         {
-            cout << (int) this->graph[i][j] << " ";
+            cout << (int)this->graph[i][j] << " ";
         }
         cout << endl;
     }
@@ -109,13 +105,9 @@ void Graph::newRandomGraph()
     {
         for (int j = 0; j < V; j++)
         {
-            if (i != j && j > i)
-                createLigation(i, j, (double)(rand() % 10 + 1));
+            if (i != j && j > i) createLigation(i, j, (double)(rand() % 10 + 1));
         }
     }
 }
 
-bool Graph::edgeExist(int x, int y)
-{
-    return graph[x][y] != UNDEFINED;
-}
+bool Graph::edgeExist(int x, int y) { return graph[x][y] != UNDEFINED; }
