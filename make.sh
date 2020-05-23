@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd src && \
     g++ -g -o main.exe \
     -std=c++14 \

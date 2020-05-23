@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #doxygen -g doxyconfig.txt
 
 rm -rf doc
