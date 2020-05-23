@@ -122,7 +122,6 @@ void Graph::newRandomGraph()
 }
 
 /**
- *
  * Verifica se uma aresta que começa em x e termina em y já existe no Grafo
  */
 bool Graph::edgeExist(int x, int y) { return graph[x][y] != UNDEFINED; }
