@@ -67,7 +67,7 @@ if (nivel == vertices)
 }
 ```
 
-Caso o algoritmo ainda não estiver no fim da árvore, o primeiro “if” será falso e, assim, cairemos no “eles”. Este bloco
+Caso o algoritmo ainda não estiver no fim da árvore, o primeiro “if” será falso e, assim, cairemos no “else”. Este bloco
 possui um “for” que passa por todos os vértices ainda não visitados. Em sua estrutura, temos uma chamada recursiva que é
 requisitada caso o custo do caminho parcial até o momento, `parcial`, seja menor que o custo do menor caminho atual. Porém,
 se esse teste for falso, ou seja, se o percorrido até este momento já é `maior` que o menor caminho armazenado, o teste
@@ -106,23 +106,23 @@ No caso dessa imagem, `g(i, S)` é uma função que calcula o menor custo possí
 chegar no vértice `i` passando por todos os vértices do subconjunto `S`.
 
 O truque da programação dinâmica aqui é que, por exemplo, o custo mínimo para chegar
-no vértice 1, passando pelos vértices 2 e 3, ou seja, g(1, {2, 3}) é igual ao mínimo
-entre:
+no vértice 1, passando pelos vértices 2 e 3, ou seja, `g(1, {2, 3})` é igual ao
+mínimo entre:
 
 I) chegar no vértice 2, passando pelo vértice 3 e do vértice 2 ir para o 1 ou
 
 II) chegar no vértice 3, passando pelo vértice 2 e do vértice 3 ir para o 1
 
-porém "chegar no vértice 2, passando pelo vértice 3" é exatamente g(2, {3})
-e "chegar no vértice 3, passando pelo vértice 2" é exatamente g(3, {2}), ou seja,
+porém "chegar no vértice 2, passando pelo vértice 3" é exatamente `g(2, {3})`
+e "chegar no vértice 3, passando pelo vértice 2" é exatamente `g(3, {2})`, ou seja,
 ao guardar a solução de problemas menores, consigo resolver problemas maiores.
 
 No início do algoritmo eu já calculo o custo de todos caminhos que terminam em um
 vértice `v` qualquer e não precisam de passar por nenhum outro, ou seja, são chamadas
-à função g do tipo: g(`v`, Ø). Nesse caso, o custo é o custo de sair de `v` e ir para
+à função g do tipo: `g(v, Ø)`. Nesse caso, o custo é o custo de sair de `v` e ir para
 o vértice inicial que é o 0. Ou seja, é a aresta entre esses dois vértices.
 
-Faço isso nesse trecho de código, onde `memoTable[A][B]` significa g(B, A).
+Faço isso nesse trecho de código, onde `memoTable[A][B]` significa `g(B, A)`.
 
 ```cpp
 for (size_t city = 1; city < numCities; city++)
