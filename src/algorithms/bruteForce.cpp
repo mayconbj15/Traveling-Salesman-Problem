@@ -7,6 +7,9 @@
 
 using namespace std;
 
+/**
+ * Construtor vazio da classe BruteForce
+ */
 BruteForce::BruteForce() : TSP("Brute Force") {}
 BruteForce::BruteForce(Graph &graph) : TSP(graph, "Brute Force") {}
 BruteForce::BruteForce(Graph &&graph) : TSP(graph, "Brute Force") {}
@@ -14,7 +17,7 @@ BruteForce::BruteForce(Graph &&graph) : TSP(graph, "Brute Force") {}
 /**
  * Função que gera um conjunto de vértices padrão que será permutado
  *
- * @return um array com de 0 a V
+ * @return um array de 0 a V+1 inteiros começando em 0 e terminando em 0
  */
 void BruteForce::initializePath(int *paths, int V)
 {
@@ -26,7 +29,7 @@ void BruteForce::initializePath(int *paths, int V)
 
 /**
  * Função que percorre um determinado conjunto de vertices dado em um array de
- * inteiro e faz a soma de seus pesos
+ * inteiros e faz a soma de seus pesos
  *
  * @param array array de inteiro com os vértices a serem visitados
  */
