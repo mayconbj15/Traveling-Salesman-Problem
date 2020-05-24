@@ -385,7 +385,7 @@ Essa função deixa fixo o último elemento do array e permuta os outros N-2 ele
 
 ### Funções Dynamic Programming
 
-<img src="https://latex.codecogs.com/gif.latex?3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" title="3*\sum_{0}^{n-1} \left( \frac{n!}{(n-i)!} \right) + \sum_{1}^{n} \left( \frac{n!}{(n-i)!} \right)" />
+<a href="https://www.codecogs.com/eqnedit.php?latex=3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" title="3*\sum_{0}^{n-1} \left( \frac{n!}{(n-i)!} \right) + \sum_{1}^{n} \left( \frac{n!}{(n-i)!} \right)" /></a>
 
 ### Funções Genetic Algorithm
 
