@@ -42,7 +42,7 @@ abstrata e classe base para os outros algoritmos que também são representados 
 **Grafo** - Representado por uma matriz VxV de números flutuantes onde V é o número de vértices.
 **Vetor** - Um vetor de inteiros de V+1 elementos que representa o caminho a ser percorrido no grafo e também salva o caminho percorrido de menor peso.
 
-#### Brute Force
+### Brute Force
 
 O Brute Force gera um array com V+1 vértices e permuta todas as suas V-1 posições, sempre começando do vértice 0 e terminando no vértice 0.
 A função **permutation(int\* array, int size)** irá gerar permutações dos vértices entre a posição 1 a V. E na hora de percorrer o caminho é adicionado vértice 0 no final do array.
@@ -295,12 +295,7 @@ Rodando todos os algoritmos Windows (PowerShell):
 
 ## 3) Análise de Complexidade:
 
-Análise de complexidade do pior e do melhor caso de todas as
-funções do programa e também do programa principal. Essa análise pode ser feita de forma
-mais detalhada linha por linha, somando-se as complexidades ou de forma mais geral,
-explicando a complexidade da função como um todo. De qualquer forma, tem que ficar claro
-qual é a operação relevante e também as configurações de entrada que levam ao pior e ao
-melhor caso.
+### Funções compartilhadas entre os algoritmos
 
 **sumPath**
 
@@ -324,6 +319,8 @@ double TSP::sumPath(int *array, int arraySize)
     return sum;
 }
 ```
+
+### Funções Brute Force
 
 **Operação relevante**: Soma dos pesos
 Essa função percorre um array de inteiro do elemento 0 até o N-2.
@@ -385,6 +382,20 @@ Essa função deixa fixo o último elemento do array e permuta os outros N-2 ele
 **Função de complexidade:** F(n) = n-1 x (n-2)!
 **Complexidade:** O(n!)
 
+### Funções Dynamic Programming
+
+<img src="https://latex.codecogs.com/gif.latex?3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" title="3*\sum_{0}^{n-1} \left( \frac{n!}{(n-i)!} \right) + \sum_{1}^{n} \left( \frac{n!}{(n-i)!} \right)" />
+
+### Funções Genetic Algorithm
+
+![Análise de complexidade createMutationIndexes e mutate](https://i.imgur.com/yNJYT6l.png)
+![Análise de complexidade mutateIndividual](https://i.imgur.com/cjmISTL.png)
+![Análise de complexidade mutatePopulation](https://i.imgur.com/RPisRj0.png)
+![Análise de complexidade createRandomPath](https://i.imgur.com/HuyBce2.png)
+![Análise de complexidade createIndividual](https://i.imgur.com/Y7VB6R0.png)
+![Análise de complexidade createRandomPopulation](https://i.imgur.com/WuMjXDL.png)
+![Análise de complexidade Genetic Algorithm](https://i.imgur.com/jKWlkNw.png)
+
 ## 4) Testes:
 
 Descrever os testes realizados, mostrando a saída do programa além de eventuais
@@ -392,7 +403,7 @@ análises e comparações que foram solicitadas no enunciado.
 
 Em todos os gráficos, o eixo x é o número de cidades e o eixo y é o tempo gasto em milisegundos.
 
-### Tempos
+### Tempos individuais
 
 #### Brute Force
 
@@ -406,11 +417,11 @@ Em todos os gráficos, o eixo x é o número de cidades e o eixo y é o tempo ga
 
 ![travelling salesman problem, dynamic programming](https://i.imgur.com/Zu4fzn1.png)
 
-#### Dynamic Programming
+#### Genetic Algorithm
 
 ![travelling salesman problem, genetic algorithm](https://i.imgur.com/0fzhGwi.png)
 
-### Comparações de tempos
+### Comparações entre os algoritmos
 
 ![travelling salesman problem, branch and bound, brute force, dynamic programming, genetic algorithm](https://i.imgur.com/O8PazIL.png)
 
