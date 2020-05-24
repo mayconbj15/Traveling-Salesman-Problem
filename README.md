@@ -295,12 +295,95 @@ Rodando todos os algoritmos Windows (PowerShell):
 
 ## 3) Análise de Complexidade:
 
-análise de complexidade do pior e do melhor caso de todas as
+Análise de complexidade do pior e do melhor caso de todas as
 funções do programa e também do programa principal. Essa análise pode ser feita de forma
 mais detalhada linha por linha, somando-se as complexidades ou de forma mais geral,
 explicando a complexidade da função como um todo. De qualquer forma, tem que ficar claro
 qual é a operação relevante e também as configurações de entrada que levam ao pior e ao
 melhor caso.
+
+**sumPath**
+
+```cpp
+double TSP::sumPath(int *array, int arraySize)
+{
+    double sum = 0.0;
+    int weight;
+    double **graphMatrix = this->graph.getGraph();
+
+    for (int i = 0, j = 1; j < arraySize; i++, j++)
+    {
+        weight = graphMatrix[array[i]][array[j]];
+
+        if (weight != UNDEFINED)
+            sum += weight;
+        else
+            return -1; // O caminho não gera um ciclo hamiltoniano (faltou aresta)
+    }
+
+    return sum;
+}
+```
+
+```cpp
+void BruteForce::walkThePath(int *array)
+{
+    int V = this->graph.getV();
+    double sum = sumPath(array);
+
+    if (sum == -1) return;
+    if (sum < this->distance)
+    {
+        this->distance = sum;
+
+        // preenche o vetor de cidades com o maior caminho
+        for (int i = 0; i < V; i++)
+            this->cities[i] = array[i];
+    }
+}
+```
+
+**Operação relevante:** Atribuição de elementos no array cities
+**Pior caso:** A soma do caminho atual será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita N atribuições no vetor cities.
+**Melhor caso**A soma do caminho atual não será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita 0 atribuições no vetor cities.
+**Função de complexidade:** F(n) = n
+**Complexidade:** O(n)
+
+**Operação relevante**: Soma dos pesos
+Essa função percorre um array de inteiro do elemento 0 até o N-2.
+**Melhor caso:** Todos os testes **if(weight != UNDEFINED)** darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.
+**Pior caso** Todos os testes **if(weight != UNDEFINED)** darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.
+**Função de complexidade:** F(n) = N-2
+**Complexidade:** O(n)
+
+**permutation**
+
+```cpp
+void BruteForce::permutation(int array[], int size)
+{
+    if (size == 1) // final da permutação
+    {
+        walkThePath(array);
+        return;
+    }
+
+    for (int i = 1; i < size; i++)
+    {
+        permutation(array, size - 1);
+
+        if (size % 2 == 1)
+            swap(array[1], array[size - 1]);
+        else
+            swap(array[i], array[size - 1]);
+    }
+}
+```
+
+**Operação relevante**: Troca de elemento no array
+Essa função deixa fixo o último elemento do array e permuta os outros N-2 elementos. Sempre que ele encontra todas as permutações dos N-2 elementos que estão com o atual último elemento fixo esse elemento é trocado e novamente é gerada N-2 permutações, esse processo se repete até que todos os N-1 (menos o 0) elementos tenham sido fixados na última posição.
+**Melhor e pior caso:** No caso dessa função o pior caso e o melhor caso sempre serão iguais, pois sempre ele irá gerar n-1 x (n-2)! operações.
+**Função de complexidade:** F(n) = n-1 x (n-2)!
+**Complexidade:** O(n!)
 
 ## 4) Testes:
 
