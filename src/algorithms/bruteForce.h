@@ -17,6 +17,6 @@ public:
     void run();
 
     void initializePath(int *paths, int V);
-    void permutation(int array[], int size, int n);
+    void permutation(int array[], int size);
     void walkThePath(int *array);
 };

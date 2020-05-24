@@ -61,7 +61,7 @@ void BruteForce::walkThePath(int *array)
  * @param n tamanho real do vetor
  *
  */
-void BruteForce::permutation(int array[], int size, int n)
+void BruteForce::permutation(int array[], int size)
 {
     if (size == 1) // final da permutação
     {
@@ -71,7 +71,7 @@ void BruteForce::permutation(int array[], int size, int n)
 
     for (int i = 1; i < size; i++)
     {
-        permutation(array, size - 1, n);
+        permutation(array, size - 1);
 
         if (size % 2 == 1)
             swap(array[1], array[size - 1]);
@@ -92,5 +92,5 @@ void BruteForce::run()
 
     // Gera um vetor com os vertices que serão permutados
     initializePath(paths, V);
-    permutation(paths, V, V);
+    permutation(paths, V);
 }

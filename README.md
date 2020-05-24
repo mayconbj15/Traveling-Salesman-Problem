@@ -37,6 +37,53 @@ abstrata e classe base para os outros algoritmos que também são representados 
 
 ### Detalhes de implementação
 
+#### Estruturas de dados
+
+**Grafo** - Representado por uma matriz VxV de números flutuantes onde V é o número de vértices.
+**Vetor** - Um vetor de inteiros de V+1 elementos que representa o caminho a ser percorrido no grafo e também salva o caminho percorrido de menor peso.
+
+#### Brute Force
+
+O Brute Force gera um array com V+1 vértices e permuta todas as suas V-1 posições, sempre começando do vértice 0 e terminando no vértice 0.
+A função **permutation(int\* array, int size)** irá gerar permutações dos vértices entre a posição 1 a V. E na hora de percorrer o caminho é adicionado vértice 0 no final do array.
+Ex: 0 1 2 3 0.
+Esses seriam os vértices que seriam percorridos para um grafo de 3 vértices.
+0 1 2 3 0
+0 1 3 2 0
+0 2 3 1 0
+0 2 1 3 0
+0 3 1 2 0
+0 3 2 1 0
+
+Cada um desses arrays significam um caminho a ser percorrido no grafo e todos são percorridos realizando a soma de cada peso entre um vértice e outro.
+A função **walkThePath(int\* array)** é responsável por fazer essa computação. Ela chama a função **sumPath(int\* array)** que retorna a soma do caminho atual e então verifica se a soma atual é menor do que a menor soma já encontrada, se caso for a menor a **walkThePath** também guarda esse array de cidades para mostrar o menor caminho depois.
+
+**Função permutation(int array, int size)**
+
+```cpp
+void BruteForce::permutation(int array[], int size)
+{
+    if (size == 1) // final da permutação
+    {
+        walkThePath(array);
+        return;
+    }
+
+    for (int i = 1; i < size; i++)
+    {
+        permutation(array, size - 1);
+
+        if (size % 2 == 1)
+            swap(array[1], array[size - 1]);
+        else
+            swap(array[i], array[size - 1]);
+    }
+}
+```
+
+Essa função é a principal do paradigma do Brute Force é ela que gera as permutações de todos os caminhos que serão percorridos.
+Ela deixa fixo o último número do array e permuta os N-2 números restantes. Essa é uma adaptação do algoritmo de Heap que foi proposto por B.R Heap em 1963. Na nossa versão começamos o loop do segundo elemtno do array, deixando assim o primeiro elemento do array fixo e por isso a permutação é entre os outros N-2 elementos.
+
 ### Branch and Bound
 
 Similar ao Brute Force, o Branch and Bound gera uma árvore de recursão com diversos caminhos para seguir. Entretanto, não
