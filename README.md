@@ -268,8 +268,16 @@ No caso desse algoritmo, coloquei o número máximo de tentativas como 3.
 
 ### Formato de entrada e saída
 
-o formato de entrada e saída de dados, bem como decisões tomadas relativas aos
+O formato de entrada e saída de dados, bem como decisões tomadas relativas aos
 casos e detalhes de especificação que porventura estejam omissos no enunciado.
+
+A primeira linha da entrada é um número **N (3 <= N <=15)** que representa o número de vértices do grafo.
+As N próximas linhas recebem cada uma um valor **X aleatório (0 <= X <=1000)** e um valor **Y aleatório (0 <= Y <=1000)** que representam as coordenadas dos vértices.
+Esse padrão se repete 15 vezes para cada valor de N com N variando de 3 em 3 até chegar em 15.
+
+A saída de de dados é um arquivo no formato .csv com os dados separados por ponto e virgula. A primeira linha contém os nomes dos paradigmas.
+Existem 5 colunas, cada valor das colunas representam a média de tempo para execução do paradigma para N cidades.
+Essa saída é colocada no Excel para gerar os gráficos comparativos e individuais de cada paradigma.
 
 ### Ambiente computacional
 
@@ -321,14 +329,14 @@ double TSP::sumPath(int *array, int arraySize)
 }
 ```
 
-### Funções Brute Force
-
 **Operação relevante**: Soma dos pesos  
 Essa função percorre um array de inteiro do elemento 0 até o N-2.  
 **Melhor caso:** Todos os testes `if(weight != UNDEFINED)` darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.  
 **Pior caso** Todos os testes `f(weight != UNDEFINED)` darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.  
 **Função de complexidade:** F(n) = N-2  
-**Complexidade:** O(n)  
+**Complexidade:** O(n)
+
+### Funções Brute Force
 
 ```cpp
 void BruteForce::walkThePath(int *array)
@@ -352,7 +360,7 @@ void BruteForce::walkThePath(int *array)
 **Pior caso:** A soma do caminho atual será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita N atribuições no vetor cities.  
 **Melhor caso**A soma do caminho atual não será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita 0 atribuições no vetor cities.  
 **Função de complexidade:** F(n) = n  
-**Complexidade:** O(n)  
+**Complexidade:** O(n)
 
 **permutation**
 
@@ -381,10 +389,12 @@ void BruteForce::permutation(int array[], int size)
 Essa função deixa fixo o último elemento do array e permuta os outros N-2 elementos. Sempre que ele encontra todas as permutações dos N-2 elementos que estão com o atual último elemento fixo esse elemento é trocado e novamente é gerada N-2 permutações, esse processo se repete até que todos os N-1 (menos o 0) elementos tenham sido fixados na última posição.  
 **Melhor e pior caso:** No caso dessa função o pior caso e o melhor caso sempre serão iguais, pois sempre ele irá gerar n-1 x (n-2)! operações.  
 **Função de complexidade:** F(n) = n-1 x (n-2)!  
-**Complexidade:** O(n!)  
+**Complexidade:** O(n!)
 
 ### Funções Branch and Bound
-#### atualizarMelhorCaminho  
+
+#### atualizarMelhorCaminho
+
 ```cpp
 void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
 {
@@ -393,12 +403,14 @@ void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
       this->cities[x] = caminhoParcial[x];
 }
 ```
-  **Operação relevante**: atribuição ao array cities  
-	**Em todos os casos**: Percorre todo o vetor com o melhor caminho atualizando-o  
-	**Função de complexidade**: F(n) = n  
-	**Complexidade**: O(n)  
-  
-#### run  
+
+**Operação relevante**: atribuição ao array cities  
+ **Em todos os casos**: Percorre todo o vetor com o melhor caminho atualizando-o  
+ **Função de complexidade**: F(n) = n  
+ **Complexidade**: O(n)
+
+#### run
+
 ```cpp
 void BranchAndBound::run()
 {
@@ -418,12 +430,14 @@ void BranchAndBound::run()
     branchAndBound(matriz, 0, 1, caminhoParcial, visitados);
 }
 ```
-  **Operação relevante**:	Atribuição para os vetores  
-	**Em todos os casos**: Inicializa dois vetores de tamanho **n** necessários para o algoritmo.  
-	**Função de complexidade**: F(n) = 2*n + 2  
-	**Complexidade**: O(n)  
-  
+
+**Operação relevante**: Atribuição para os vetores  
+ **Em todos os casos**: Inicializa dois vetores de tamanho **n** necessários para o algoritmo.  
+ **Função de complexidade**: F(n) = 2\*n + 2  
+ **Complexidade**: O(n)
+
 #### branchAndBound
+
 ```cpp
 void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
                                     int *caminhoParcial, bool *visitados)
@@ -433,18 +447,18 @@ void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
 
     if (nivel == vertices && matriz[nivelAnterior][caminhoParcial[0]] != UNDEFINED) {
           double resultadoAtual = parcial + matriz[nivelAnterior][caminhoParcial[0]];
-          
+
           if (resultadoAtual < this->distance) {
               atualizarMelhorCaminho(caminhoParcial);
               this->distance = resultadoAtual;
-          }        
+          }
     }
     else
     {
         for (int x = 0; x < vertices; x++) {
             if (!visitados[x] && matriz[nivelAnterior][x] != UNDEFINED) {
-                parcial += matriz[nivelAnterior][x]; 
-                
+                parcial += matriz[nivelAnterior][x];
+
                 if (parcial < this->distance) {
                     caminhoParcial[nivel] = x;
                     visitados[x] = true;
@@ -461,18 +475,19 @@ void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
     }
 }
 ```
-  **Operação relevante**: Comparações  
-	**Pior caso**: Executará como o Brute Force para um caso onde nenhuma parte da árvore de
-			   recursão será descartada. Ou seja, percorrerá toda a árvore e testará todas
-			   as permutações de caminhos possíveis. Assim, cada chamada da recursividade,
-			   haverá 3 comparações. Portanto, a função de complexidade será F(n) = 3*n!
-			   ou O(n!).  
-	  **-Função de complexidade**: T(n) = T(n-1)*O(n) + O(n²)  
-		**-Ordem de complexidade**:  T(n) = O(n!)  
-  **Melhor caso:** O melhor caminho é encontrado na primeira descida até o final da árvore. Portanto, na volta desta 
-                   recursividade, todos os outros testes serão descartados com uma única comparação.  
-		**-Função de complexidade**: T(n) = O(n) + (n-1)  
-		**-Ordem de complexidade**: T(n) = O(n)  
+
+**Operação relevante**: Comparações  
+ **Pior caso**: Executará como o Brute Force para um caso onde nenhuma parte da árvore de
+recursão será descartada. Ou seja, percorrerá toda a árvore e testará todas
+as permutações de caminhos possíveis. Assim, cada chamada da recursividade,
+haverá 3 comparações. Portanto, a função de complexidade será F(n) = 3*n!
+ou O(n!).  
+ **-Função de complexidade**: T(n) = T(n-1)*O(n) + O(n²)  
+ **-Ordem de complexidade**: T(n) = O(n!)  
+ **Melhor caso:** O melhor caminho é encontrado na primeira descida até o final da árvore. Portanto, na volta desta
+recursividade, todos os outros testes serão descartados com uma única comparação.  
+ **-Função de complexidade**: T(n) = O(n) + (n-1)  
+ **-Ordem de complexidade**: T(n) = O(n)
 
 ### Funções Dynamic Programming
 
