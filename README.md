@@ -323,12 +323,12 @@ double TSP::sumPath(int *array, int arraySize)
 
 ### Funções Brute Force
 
-**Operação relevante**: Soma dos pesos
-Essa função percorre um array de inteiro do elemento 0 até o N-2.
-**Melhor caso:** Todos os testes `if(weight != UNDEFINED)` darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.
-**Pior caso** Todos os testes `f(weight != UNDEFINED)` darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.
-**Função de complexidade:** F(n) = N-2
-**Complexidade:** O(n)
+**Operação relevante**: Soma dos pesos  
+Essa função percorre um array de inteiro do elemento 0 até o N-2.  
+**Melhor caso:** Todos os testes `if(weight != UNDEFINED)` darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.  
+**Pior caso** Todos os testes `f(weight != UNDEFINED)` darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.  
+**Função de complexidade:** F(n) = N-2  
+**Complexidade:** O(n)  
 
 ```cpp
 void BruteForce::walkThePath(int *array)
@@ -348,11 +348,11 @@ void BruteForce::walkThePath(int *array)
 }
 ```
 
-**Operação relevante:** Atribuição de elementos no array cities
-**Pior caso:** A soma do caminho atual será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita N atribuições no vetor cities.
-**Melhor caso**A soma do caminho atual não será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita 0 atribuições no vetor cities.
-**Função de complexidade:** F(n) = n
-**Complexidade:** O(n)
+**Operação relevante:** Atribuição de elementos no array cities  
+**Pior caso:** A soma do caminho atual será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita N atribuições no vetor cities.  
+**Melhor caso**A soma do caminho atual não será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita 0 atribuições no vetor cities.  
+**Função de complexidade:** F(n) = n  
+**Complexidade:** O(n)  
 
 **permutation**
 
@@ -377,11 +377,11 @@ void BruteForce::permutation(int array[], int size)
 }
 ```
 
-**Operação relevante**: Troca de elemento no array
-Essa função deixa fixo o último elemento do array e permuta os outros N-2 elementos. Sempre que ele encontra todas as permutações dos N-2 elementos que estão com o atual último elemento fixo esse elemento é trocado e novamente é gerada N-2 permutações, esse processo se repete até que todos os N-1 (menos o 0) elementos tenham sido fixados na última posição.
-**Melhor e pior caso:** No caso dessa função o pior caso e o melhor caso sempre serão iguais, pois sempre ele irá gerar n-1 x (n-2)! operações.
-**Função de complexidade:** F(n) = n-1 x (n-2)!
-**Complexidade:** O(n!)
+**Operação relevante**: Troca de elemento no array  
+Essa função deixa fixo o último elemento do array e permuta os outros N-2 elementos. Sempre que ele encontra todas as permutações dos N-2 elementos que estão com o atual último elemento fixo esse elemento é trocado e novamente é gerada N-2 permutações, esse processo se repete até que todos os N-1 (menos o 0) elementos tenham sido fixados na última posição.  
+**Melhor e pior caso:** No caso dessa função o pior caso e o melhor caso sempre serão iguais, pois sempre ele irá gerar n-1 x (n-2)! operações.  
+**Função de complexidade:** F(n) = n-1 x (n-2)!  
+**Complexidade:** O(n!)  
 
 ### Funções Branch and Bound
 #### atualizarMelhorCaminho  
