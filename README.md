@@ -32,6 +32,7 @@ Neste trabalho criamos uma classe TSP (Traveling Salesman Problem) que serve com
 abstrata e classe base para os outros algoritmos que também são representados por classes.
 
 [DOCUMENTAÇÃO CLASSES](https://mayconbj15.github.io/Traveling-Salesman-Problem/inherits.html)
+
 [DOCUMENTAÇÃO ARQUIVOS](https://mayconbj15.github.io/Traveling-Salesman-Problem/files.html)
 
 ### Detalhes de implementação
