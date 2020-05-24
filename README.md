@@ -476,7 +476,19 @@ void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
 
 ### Funções Dynamic Programming
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" title="3*\sum_{0}^{n-1} \left( \frac{n!}{(n-i)!} \right) + \sum_{1}^{n} \left( \frac{n!}{(n-i)!} \right)" /></a>
+![Análise de complexidade Dynamic Programming TSP](https://i.imgur.com/6iGjal1.png)
+
+A análise acima desconsidera que a programação dinâmica consegue reaproveitar soluções
+de problemas menores para resolver problemas maiores. A análise de complexidade real
+do algoritmo não pode ser feita pelo código. É uma análise matemática. A ideia é
+descobrir quantos subproblemas existem, pois, ao resolver todos os subproblemas, as
+novas chamadas recursivas são todas O(1). A quantidade máxima de subproblemas é
+O(n \* 2^n). Como é necessário fazer isso n vezes na primeira chamada, o tempo total é
+O(n² \* 2^n).
+
+<!-- <a href="https://www.codecogs.com/eqnedit.php?latex=3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" target="_blank">
+   <img src="https://latex.codecogs.com/gif.latex?3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" title="3*\sum_{0}^{n-1} \left( \frac{n!}{(n-i)!} \right) + \sum_{1}^{n} \left( \frac{n!}{(n-i)!} \right)" />
+</a> -->
 
 ### Funções Genetic Algorithm
 
