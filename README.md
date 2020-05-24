@@ -31,6 +31,9 @@ Como o problema envolve naturalmente a estrutura de dados Grafo, todos os algori
 Neste trabalho criamos uma classe TSP (Traveling Salesman Problem) que serve como uma classe
 abstrata e classe base para os outros algoritmos que também são representados por classes.
 
+[DOCUMENTAÇÃO CLASSES](https://mayconbj15.github.io/Traveling-Salesman-Problem/inherits.html)
+[DOCUMENTAÇÃO ARQUIVOS](https://mayconbj15.github.io/Traveling-Salesman-Problem/files.html)
+
 ### Detalhes de implementação
 
 ### Branch and Bound
