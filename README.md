@@ -16,7 +16,12 @@ Os algoritmos utilizados foram:
   > Gera uma árvore com todos os caminhos testando todas as ramificações parciais e podando aquelas que
   > já são maiores que a solução atual.
 - Dynamic Programming
+  > Resolve problemas com caminhos hamiltonianos menores e vai comparando essas
+  > soluções para gerar soluções com caminhos maiores.
 - Genetic Algorithm
+  > Gera uma população inicial de indivíduos onde cada indivíduo é um circuito
+  > hamiltoniano e, a partir dessa população, realiza mutações nos indivíduos um certo
+  > números de vezes. O melhor indivíduo será o resultado.
 
 ## 2) Implementação:
 
@@ -25,6 +30,9 @@ Os algoritmos utilizados foram:
 Como o problema envolve naturalmente a estrutura de dados Grafo, todos os algoritmos a usam.
 Neste trabalho criamos uma classe TSP (Traveling Salesman Problem) que serve como uma classe
 abstrata e classe base para os outros algoritmos que também são representados por classes.
+
+[DOCUMENTAÇÃO CLASSES](https://mayconbj15.github.io/Traveling-Salesman-Problem/inherits.html)
+[DOCUMENTAÇÃO ARQUIVOS](https://mayconbj15.github.io/Traveling-Salesman-Problem/files.html)
 
 ### Detalhes de implementação
 
@@ -139,22 +147,26 @@ pelas cidades 1, 2 e 3
 Esse trecho é a execução do algoritmo de fato:
 
 ```cpp
-int newSubset = removeCity(endingCity, citiesSubset);
-int bestCost = MAX, cost = memoTable[newSubset][endingCity];
-
-if (cost != UNDEFINED) return cost;
-
-for (int newEndingCity = 1; newEndingCity < numCities; newEndingCity++)
+int dynamicTSP(vector<vector<int>> &memoTable, double **graph, int citiesSubset,
+               int endingCity, int numCities)
 {
-    if (notIn(newSubset, newEndingCity)) continue;
+    int newSubset = removeCity(endingCity, citiesSubset);
+    int bestCost = MAX, cost = memoTable[newSubset][endingCity];
 
-    cost = dynamicTSP(memoTable, graph, newSubset, newEndingCity, numCities) +
-            graph[newEndingCity][endingCity];
+    if (cost != UNDEFINED) return cost;
 
-    if (cost < bestCost) bestCost = cost;
+    for (int newEndingCity = 1; newEndingCity < numCities; newEndingCity++)
+    {
+        if (notIn(newSubset, newEndingCity)) continue;
+
+        cost = dynamicTSP(memoTable, graph, newSubset, newEndingCity, numCities) +
+               graph[newEndingCity][endingCity];
+
+        if (cost < bestCost) bestCost = cost;
+    }
+
+    return memoTable[newSubset][endingCity] = bestCost;
 }
-
-return memoTable[newSubset][endingCity] = bestCost;
 ```
 
 Ao receber um subconjunto de cidades (`citiesSubset`) e uma cidade final (`endingCity`),
