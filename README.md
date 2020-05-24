@@ -325,6 +325,13 @@ double TSP::sumPath(int *array, int arraySize)
 }
 ```
 
+**Operação relevante**: Soma dos pesos
+Essa função percorre um array de inteiro do elemento 0 até o N-2.
+**Melhor caso:** Todos os testes **if(weight != UNDEFINED)** darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.
+**Pior caso** Todos os testes **if(weight != UNDEFINED)** darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.
+**Função de complexidade:** F(n) = N-2
+**Complexidade:** O(n)
+
 ```cpp
 void BruteForce::walkThePath(int *array)
 {
@@ -347,13 +354,6 @@ void BruteForce::walkThePath(int *array)
 **Pior caso:** A soma do caminho atual será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita N atribuições no vetor cities.
 **Melhor caso**A soma do caminho atual não será menor do que a menor distância já calculada dos caminhos do grafo. Então será feita 0 atribuições no vetor cities.
 **Função de complexidade:** F(n) = n
-**Complexidade:** O(n)
-
-**Operação relevante**: Soma dos pesos
-Essa função percorre um array de inteiro do elemento 0 até o N-2.
-**Melhor caso:** Todos os testes **if(weight != UNDEFINED)** darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.
-**Pior caso** Todos os testes **if(weight != UNDEFINED)** darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.
-**Função de complexidade:** F(n) = N-2
 **Complexidade:** O(n)
 
 **permutation**
@@ -387,10 +387,30 @@ Essa função deixa fixo o último elemento do array e permuta os outros N-2 ele
 
 ## 4) Testes:
 
-descrever os testes realizados, mostrando a saída do programa além de eventuais
+Descrever os testes realizados, mostrando a saída do programa além de eventuais
 análises e comparações que foram solicitadas no enunciado.
 
 Em todos os gráficos, o eixo x é o número de cidades e o eixo y é o tempo gasto em milisegundos.
+
+### Tempos
+
+#### Brute Force
+
+![travelling salesman problem, brute force](https://i.imgur.com/OLfo2No.png)
+
+#### Branch and Bound
+
+![travelling salesman problem, branch and bound](https://i.imgur.com/5SQBb5g.png)
+
+#### Dynamic Programming
+
+![travelling salesman problem, dynamic programming](https://i.imgur.com/Zu4fzn1.png)
+
+#### Dynamic Programming
+
+![travelling salesman problem, genetic algorithm](https://i.imgur.com/0fzhGwi.png)
+
+### Comparações de tempos
 
 ![travelling salesman problem, branch and bound, brute force, dynamic programming, genetic algorithm](https://i.imgur.com/O8PazIL.png)
 
@@ -415,7 +435,7 @@ subproblemas também foi bem interessante.
 https://www.geeksforgeeks.org/travelling-salesman-problem-set-1/<br/>
 https://www2.cs.sfu.ca/CourseCentral/125/tjd/tsp_example.html
 
-### Branch and Bound
+#### Branch and Bound
 
 https://www.geeksforgeeks.org/traveling-salesman-problem-using-branch-and-bound-2/<br />
 https://www.youtube.com/watch?v=1FEP_sNb62k<br />
