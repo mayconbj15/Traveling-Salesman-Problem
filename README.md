@@ -383,6 +383,97 @@ Essa função deixa fixo o último elemento do array e permuta os outros N-2 ele
 **Função de complexidade:** F(n) = n-1 x (n-2)!
 **Complexidade:** O(n!)
 
+### Funções Branch and Bound
+#### atualizarMelhorCaminho  
+```cpp
+void BranchAndBound::atualizarMelhorCaminho(int *caminhoParcial)
+{
+  int vertices = this->graph.getV();
+  for (int x = 0; x < vertices; x++)
+      this->cities[x] = caminhoParcial[x];
+}
+```
+  **Operação relevante**: atribuição ao array cities  
+	**Em todos os casos**: Percorre todo o vetor com o melhor caminho atualizando-o  
+	**Função de complexidade**: F(n) = n  
+	**Complexidade**: O(n)  
+  
+#### run  
+```cpp
+void BranchAndBound::run()
+{
+    int vertices = this->graph.getV();
+    int caminhoParcial[vertices + 1];
+    bool visitados[vertices];
+    double **matriz = this->graph.getGraph();
+
+    this->distance = MAX;
+
+    memset(caminhoParcial, -1, vertices + 1);
+    memset(visitados, false, vertices);
+
+    visitados[0] = true;
+    caminhoParcial[0] = 0;
+
+    branchAndBound(matriz, 0, 1, caminhoParcial, visitados);
+}
+```
+  **Operação relevante**:	Atribuição para os vetores  
+	**Em todos os casos**: Inicializa dois vetores de tamanho **n** necessários para o algoritmo.  
+	**Função de complexidade**: F(n) = 2*n + 2  
+	**Complexidade**: O(n)  
+  
+#### branchAndBound
+```cpp
+void BranchAndBound::branchAndBound(double **matriz, double parcial, int nivel,
+                                    int *caminhoParcial, bool *visitados)
+{
+    int vertices = this->graph.getV();
+    int nivelAnterior = caminhoParcial[nivel - 1];
+
+    if (nivel == vertices && matriz[nivelAnterior][caminhoParcial[0]] != UNDEFINED) {
+          double resultadoAtual = parcial + matriz[nivelAnterior][caminhoParcial[0]];
+          
+          if (resultadoAtual < this->distance) {
+              atualizarMelhorCaminho(caminhoParcial);
+              this->distance = resultadoAtual;
+          }        
+    }
+    else
+    {
+        for (int x = 0; x < vertices; x++) {
+            if (!visitados[x] && matriz[nivelAnterior][x] != UNDEFINED) {
+                parcial += matriz[nivelAnterior][x]; 
+                
+                if (parcial < this->distance) {
+                    caminhoParcial[nivel] = x;
+                    visitados[x] = true;
+                    branchAndBound(matriz, parcial, nivel + 1, caminhoParcial,
+                                   visitados);
+                }
+
+                parcial -= matriz[nivelAnterior][x];
+                memset(visitados, false, vertices);
+                for (int y = 0; y < nivel; y++)
+                    visitados[caminhoParcial[y]] = true;
+            }
+        }
+    }
+}
+```
+  **Operação relevante**: Comparações  
+	**Pior caso**: Executará como o Brute Force para um caso onde nenhuma parte da árvore de
+			   recursão será descartada. Ou seja, percorrerá toda a árvore e testará todas
+			   as permutações de caminhos possíveis. Assim, cada chamada da recursividade,
+			   haverá 3 comparações. Portanto, a função de complexidade será F(n) = 3*n!
+			   ou O(n!).  
+	  **-Função de complexidade**: T(n) = T(n-1)*O(n) + O(n²)  
+		**-Ordem de complexidade**:  T(n) = O(n!)  
+  **Melhor caso:** O melhor caminho é encontrado na primeira descida até o final da árvore. Portanto, na volta desta 
+                   recursividade, todos os outros testes serão descartados com uma única comparação.  
+		**-Função de complexidade**: T(n) = O(n) + (n-1)  
+		**-Ordem de complexidade**: T(n) = O(n)  
+
 ### Funções Dynamic Programming
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?3*\sum_{0}^{n-1}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)&space;&plus;&space;\sum_{1}^{n}&space;\left(&space;\frac{n!}{(n-i)!}&space;\right)" title="3*\sum_{0}^{n-1} \left( \frac{n!}{(n-i)!} \right) + \sum_{1}^{n} \left( \frac{n!}{(n-i)!} \right)" /></a>
