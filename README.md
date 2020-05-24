@@ -45,20 +45,21 @@ abstrata e classe base para os outros algoritmos que também são representados 
 ### Brute Force
 
 O Brute Force gera um array com V+1 vértices e permuta todas as suas V-1 posições, sempre começando do vértice 0 e terminando no vértice 0.
-A função **permutation(int\* array, int size)** irá gerar permutações dos vértices entre a posição 1 a V. E na hora de percorrer o caminho é adicionado vértice 0 no final do array.
+A função `permutation(int array[], int size)` irá gerar permutações dos vértices entre a posição 1 a V. E na hora de percorrer o caminho é adicionado vértice 0 no final do array.
 Ex: 0 1 2 3 0.
 Esses seriam os vértices que seriam percorridos para um grafo de 3 vértices.
-0 1 2 3 0
-0 1 3 2 0
-0 2 3 1 0
-0 2 1 3 0
-0 3 1 2 0
-0 3 2 1 0
+
+- 0 1 2 3 0
+- 0 1 3 2 0
+- 0 2 3 1 0
+- 0 2 1 3 0
+- 0 3 1 2 0
+- 0 3 2 1 0
 
 Cada um desses arrays significam um caminho a ser percorrido no grafo e todos são percorridos realizando a soma de cada peso entre um vértice e outro.
-A função **walkThePath(int\* array)** é responsável por fazer essa computação. Ela chama a função **sumPath(int\* array)** que retorna a soma do caminho atual e então verifica se a soma atual é menor do que a menor soma já encontrada, se caso for a menor a **walkThePath** também guarda esse array de cidades para mostrar o menor caminho depois.
+A função `walkThePath(int[] array)` é responsável por fazer essa computação. Ela chama a função `sumPath(int[] array)` que retorna a soma do caminho atual e então verifica se a soma atual é menor do que a menor soma já encontrada, se caso for a menor a `walkThePath` também guarda esse array de cidades para mostrar o menor caminho depois.
 
-**Função permutation(int array, int size)**
+**Função permutation(int array[], int size)**
 
 ```cpp
 void BruteForce::permutation(int array[], int size)
@@ -324,8 +325,8 @@ double TSP::sumPath(int *array, int arraySize)
 
 **Operação relevante**: Soma dos pesos
 Essa função percorre um array de inteiro do elemento 0 até o N-2.
-**Melhor caso:** Todos os testes **if(weight != UNDEFINED)** darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.
-**Pior caso** Todos os testes **if(weight != UNDEFINED)** darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.
+**Melhor caso:** Todos os testes `if(weight != UNDEFINED)` darão falso, ou seja, todas as arestas entre dois vértices não foram preenchidas. Nesse caso nenhuma operação será realizada.
+**Pior caso** Todos os testes `f(weight != UNDEFINED)` darão verdadeiro, ou seja, todas as arestas entre dois vérticesforam preenchidas. Nesse caso N-2 operações serão realizadas.
 **Função de complexidade:** F(n) = N-2
 **Complexidade:** O(n)
 
