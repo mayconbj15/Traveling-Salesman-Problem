@@ -1,5 +1,11 @@
 # Traveling-Salesman-Problem
 
+## 0) Autores:
+
+- [axell-brendow](https://github.com/axell-brendow)
+- [mayconbj15](https://github.com/mayconbj15)
+- [xXHachimanXx](https://github.com/xXHachimanXx)
+
 ## 1) Introdução:
 
 Em consonância com a expansão do mercado tecnológico, a complexidade dos problemas computacionais tem aumentado,
@@ -385,7 +391,7 @@ void BruteForce::permutation(int array[], int size)
 }
 ```
 
-**Operação relevante**: Troca de elemento no array  
+**Operação relevante**: Troca de elemento no array
 Essa função deixa fixo o último elemento do array e permuta os outros N-2 elementos. Sempre que ele encontra todas as permutações dos N-2 elementos que estão com o atual último elemento fixo esse elemento é trocado e novamente é gerada N-2 permutações, esse processo se repete até que todos os N-1 (menos o 0) elementos tenham sido fixados na última posição.  
 **Melhor e pior caso:** No caso dessa função o pior caso e o melhor caso sempre serão iguais, pois sempre ele irá gerar n-1 x (n-2)! operações.  
 **Função de complexidade:** F(n) = n-1 x (n-2)!  
